@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n \"table\": \"timesheets\",\n \"columns\": [\n  {\n   \"target\": \"employee_id\",\n   \"source\": [\"Employee ID\"],\n   \"transform\": \"text\",\n   \"params\": {\n    \"case\": \"upper\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Direct mapping of employee payroll code.\"\n  },\n  {\n   \"target\": \"employee_name\",\n   \"source\": [\"Employee Name\"],\n   \"transform\": \"name_last_first\",\n   \"params\": {},\n   \"confidence\": 1.0,\n   \"note\": \"Converts 'Last, First' name format to 'First Last'.\"\n  },\n  {\n   \"target\": \"work_date\",\n   \"source\": [\"Date\"],\n   \"transform\": \"date\",\n   \"params\": {\n    \"format\": \"%Y-%m-%d\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Standard ISO date format.\"\n  },\n  {\n   \"target\": \"project_code\",\n   \"source\": [\"Project\"],\n   \"transform\": \"text\",\n   \"params\": {\n    \"case\": \"upper\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Project code, already upper case.\"\n  },\n  {\n   \"target\": \"hours_normal\",\n   \"source\": [\"Hours Normal\"],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Ordinary hours decimal value.\"\n  },\n  {\n   \"target\": \"hours_overtime\",\n   \"source\": [\"Hours Overtime\"],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Overtime hours decimal value.\"\n  }\n ],\n \"ignore\": {},\n \"review\": []\n}",
+ "latency_s": 2.047,
+ "prompt_tokens": 3020,
+ "completion_tokens": 461
+}

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>agentic-etl review</title>
+<style>
+:root {
+  --bg: #f4f6f5; --panel: #ffffff; --ink: #14201e; --muted: #5d6b68; --line: #dde3e1; --soft: #eef3f1;
+  --teal: #2f6f68; --teal-ink: #ffffff; --teal-soft: #e3f0ed; --amber: #9a6a12; --amber-soft: #fbf1dc;
+  --red: #a63a32; --red-soft: #f8e4e1; --green: #2d6a3e; --green-soft: #e2f1e5; --code: #f7f9f8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1514; --panel: #161e1d; --ink: #e3ebe9; --muted: #93a39f; --line: #26312f; --soft: #1b2524;
+    --teal: #5fb3a8; --teal-ink: #0b1312; --teal-soft: #1b302d; --amber: #e0b062; --amber-soft: #2e2615;
+    --red: #e58a80; --red-soft: #33201e; --green: #7cc490; --green-soft: #1a2c20; --code: #121918;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1514; --panel: #161e1d; --ink: #e3ebe9; --muted: #93a39f; --line: #26312f; --soft: #1b2524;
+  --teal: #5fb3a8; --teal-ink: #0b1312; --teal-soft: #1b302d; --amber: #e0b062; --amber-soft: #2e2615;
+  --red: #e58a80; --red-soft: #33201e; --green: #7cc490; --green-soft: #1a2c20; --code: #121918;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 ui-sans-serif, system-ui, -apple-system,
+  "Segoe UI", Roboto, sans-serif; }
+header { display: flex; align-items: center; gap: 18px; padding: 14px 22px; background: var(--panel);
+  border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+header h1 { font-size: 17px; margin: 0; letter-spacing: .2px; }
+header h1 span { color: var(--teal); }
+.stats { display: flex; gap: 22px; margin-left: auto; flex-wrap: wrap; }
+.stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; }
+.stat small { color: var(--muted); }
+main { display: grid; grid-template-columns: 290px 1fr; gap: 18px; padding: 18px 22px; max-width: 1500px; margin: 0 auto; }
+@media (max-width: 900px) { main { grid-template-columns: 1fr; padding: 12px 16px; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.sources { padding: 8px; align-self: start; }
+.sources h2, .section h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+  margin: 6px 8px 10px; }
+.src { display: block; width: 100%; text-align: left; border: 1px solid transparent; background: none; color: inherit;
+  padding: 10px; border-radius: 8px; cursor: pointer; font: inherit; }
+.src:hover { background: var(--soft); }
+.src.on { background: var(--teal-soft); border-color: var(--teal); }
+.src .name { font-weight: 600; }
+.src .meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.badge { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px; margin-right: 4px;
+  font-weight: 600; vertical-align: 1px; }
+.b-approved, .b-loaded, .b-pass { background: var(--green-soft); color: var(--green); }
+.b-proposed, .b-review, .b-quar { background: var(--amber-soft); color: var(--amber); }
+.b-failed, .b-blocked, .b-fail, .b-drift { background: var(--red-soft); color: var(--red); }
+.b-neutral { background: var(--soft); color: var(--muted); }
+.detail { min-width: 0; }
+.top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding: 16px 18px 0; }
+.top h2 { margin: 0; font-size: 20px; }
+.top .muted { color: var(--muted); }
+.tabs { display: flex; gap: 4px; padding: 12px 14px 0; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.tab { border: none; background: none; color: var(--muted); font: inherit; padding: 8px 12px; cursor: pointer;
+  border-bottom: 2px solid transparent; white-space: nowrap; }
+.tab.on { color: var(--ink); border-color: var(--teal); font-weight: 600; }
+.section { padding: 14px 18px 18px; }
+.banner { border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; background: var(--amber-soft); color: var(--ink);
+  border: 1px solid color-mix(in srgb, var(--amber) 35%, transparent); }
+.banner b { color: var(--amber); }
+.banner ul { margin: 6px 0 0 18px; padding: 0; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+td.num { font-variant-numeric: tabular-nums; text-align: right; }
+.tcol b { font-weight: 600; }
+.tcol small { display: block; color: var(--muted); max-width: 260px; }
+input, select, textarea { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line);
+  border-radius: 6px; padding: 5px 7px; width: 100%; min-width: 0; }
+input:focus, select:focus { outline: 2px solid var(--teal); outline-offset: -1px; }
+.samples { color: var(--muted); font-size: 12px; margin-top: 3px; max-width: 280px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; }
+.conf { height: 6px; background: var(--soft); border-radius: 3px; width: 60px; margin-top: 8px; }
+.conf i { display: block; height: 6px; border-radius: 3px; background: var(--teal); }
+.actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
+button.btn { font: inherit; border-radius: 7px; border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+  padding: 7px 14px; cursor: pointer; }
+button.btn.primary { background: var(--teal); color: var(--teal-ink); border-color: var(--teal); font-weight: 600; }
+button.btn:hover { filter: brightness(1.05); }
+.msg { color: var(--muted); }
+.test { display: grid; grid-template-columns: 92px 70px 1fr; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.test .ex { grid-column: 3; color: var(--muted); font-size: 12px; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+pre.code { background: var(--code); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow: auto;
+  font: 12.5px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; max-height: 620px; margin: 0; }
+.kw { color: var(--teal); font-weight: 600; } .str { color: var(--amber); } .com { color: var(--muted); font-style: italic; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.tile { background: var(--soft); border-radius: 8px; padding: 10px 12px; }
+.tile b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.tile small { color: var(--muted); }
+.ignore li { margin: 4px 0; }
+.empty { padding: 40px; text-align: center; color: var(--muted); }
+table.compact { font-size: 12.5px; } table.compact td, table.compact th { white-space: nowrap; padding: 7px 6px; }
+.runrow { cursor: pointer; } .runrow:hover td { background: var(--soft); }
+.mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1><span>agentic-etl</span> · mapping review</h1>
+  <div class="stats" id="stats"></div>
+</header>
+<main>
+  <nav class="panel sources" aria-label="Sources"><h2>Sources</h2><div id="sources"></div></nav>
+  <section class="panel detail" id="detail"><div class="empty">Pick a source on the left.</div></section>
+</main>
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const api = async (path, body) => {
+  const r = await fetch(path, body === undefined ? {} : { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const data = await r.json();
+  if (!r.ok) throw new Error(data.error || r.statusText);
+  return data;
+};
+let state = { sources: [], contracts: null, current: null, data: null, version: null, tab: "mapping", lastTest: null, runIndex: 0 };
+const initialTab = new URLSearchParams(location.search).get("tab");
+const initialSource = new URLSearchParams(location.search).get("source");
+if (initialTab) state.tab = initialTab;
+state.runIndex = Number(new URLSearchParams(location.search).get("run") || 0);
+
+function badge(text, kind) { return `<span class="badge b-${kind || text}">${esc(text)}</span>`; }
+
+async function load() {
+  [state.sources, state.contracts] = await Promise.all([api("/api/sources"), api("/api/contracts")]);
+  const runs = await api("/api/runs");
+  const rows = runs.reduce((a, r) => a + (r.rows_loaded || 0), 0);
+  const q = runs.reduce((a, r) => a + (r.rows_quarantined || 0), 0);
+  $("#stats").innerHTML = [
+    [state.sources.length, "sources"], [runs.length, "runs"], [rows.toLocaleString(), "rows loaded"],
+    [q, "rows quarantined"], [runs.reduce((a, r) => a + (r.model_calls || 0), 0), "model calls"],
+  ].map(([b, s]) => `<div class="stat"><b>${b}</b><small>${s}</small></div>`).join("");
+  $("#sources").innerHTML = state.sources.map((s) => {
+    const run = s.last_run;
+    return `<button class="src ${s.source === state.current ? "on" : ""}" data-s="${esc(s.source)}">
+      <div class="name">${esc(s.source)}</div>
+      <div class="meta">${esc(s.table)} · v${s.latest.version} ${badge(s.latest.status)}${s.drift ? badge("drift") : ""}</div>
+      <div class="meta">${run ? `last run ${badge(run.status)} ${run.rows_loaded} rows` : "no runs yet"}</div></button>`;
+  }).join("") || `<div class="empty">No sources yet. Run <span class="mono">etl map FILE</span>.</div>`;
+  document.querySelectorAll(".src").forEach((b) => b.onclick = () => open(b.dataset.s));
+  if (!state.current && state.sources.length) open(initialSource || state.sources[0].source);
+}
+
+async function open(source) {
+  state.current = source;
+  state.data = await api(`/api/source/${encodeURIComponent(source)}`);
+  state.version = state.data.versions[state.data.versions.length - 1].version;
+  state.lastTest = null;
+  if (source !== initialSource) state.runIndex = 0;
+  document.querySelectorAll(".src").forEach((b) => b.classList.toggle("on", b.dataset.s === source));
+  render();
+}
+
+function rec() { return state.data.versions.find((v) => v.version === state.version); }
+
+function render() {
+  const r = rec();
+  const m = r.mapping;
+  const tabs = [["mapping", "Mapping"], ["tests", "Tests"], ["runs", "Runs & audit"], ["code", "Generated code"]];
+  $("#detail").innerHTML = `
+    <div class="top"><h2>${esc(state.current)}</h2>
+      <span class="muted">→ ${esc(m.table)}${m.new_table ? " (new table)" : ""}</span>
+      <select id="ver" style="width:auto">${state.data.versions.map((v) =>
+        `<option value="${v.version}" ${v.version === state.version ? "selected" : ""}>v${v.version} · ${v.status} · by ${v.mapping.author}</option>`).join("")}</select>
+      ${badge(r.status)}<span class="muted">made for <span class="mono">${esc(r.file)}</span></span></div>
+    <div class="tabs">${tabs.map(([k, t]) => `<button class="tab ${state.tab === k ? "on" : ""}" data-t="${k}">${t}</button>`).join("")}</div>
+    <div class="section" id="body"></div>`;
+  $("#ver").onchange = (e) => { state.version = Number(e.target.value); state.lastTest = null; render(); };
+  document.querySelectorAll(".tab").forEach((b) => b.onclick = () => { state.tab = b.dataset.t; render(); });
+  ({ mapping: renderMapping, tests: renderTests, runs: renderRuns, code: renderCode })[state.tab]();
+}
+
+function renderMapping() {
+  const r = rec(); const m = r.mapping;
+  const contract = state.contracts.tables[m.table] || m.new_table;
+  const cols = r.fingerprint.columns;
+  const byName = Object.fromEntries(cols.map((c) => [c.name, c]));
+  const vocab = Object.keys(state.contracts.vocabulary);
+  const drift = (r.drift || []).filter((c) => c.kind !== "none");
+  const rows = contract.columns.map((tc) => {
+    const c = m.columns.find((x) => x.target === tc.name) || { source: [], transform: "", params: {}, confidence: 0, note: "" };
+    const samples = c.source.map((s) => byName[s] ? (byName[s].samples || []).slice(0, 3).join(", ") : "").join(" | ");
+    return `<tr data-target="${esc(tc.name)}">
+      <td class="tcol"><b>${esc(tc.name)}</b> ${tc.nullable ? "" : badge("required", "neutral")}<small>${esc(tc.type)} · ${esc(tc.description || "")}</small></td>
+      <td><input class="f-src" list="cols" value="${esc(c.source.join(", "))}" aria-label="source for ${esc(tc.name)}">
+          <div class="samples" title="${esc(samples)}">${esc(samples) || "&nbsp;"}</div></td>
+      <td><select class="f-tr" aria-label="conversion for ${esc(tc.name)}"><option value=""></option>${vocab.map((v) =>
+        `<option ${v === c.transform ? "selected" : ""}>${v}</option>`).join("")}</select></td>
+      <td><input class="f-params mono" value="${esc(JSON.stringify(c.params || {}))}" aria-label="parameters for ${esc(tc.name)}"></td>
+      <td><div class="conf" title="${c.confidence}"><i style="width:${Math.round((c.confidence || 0) * 100)}%"></i></div></td>
+      <td class="muted" style="max-width:220px">${esc(c.note)}</td></tr>`;
+  }).join("");
+  $("#body").innerHTML = `
+    ${drift.length ? `<div class="banner"><b>Layout drift</b> against the previous approved version:<ul>${drift.map((d) =>
+      `<li>${esc(d.kind)}: ${esc(d.old !== undefined ? `${typeof d.old === "object" ? JSON.stringify(d.old) : d.old} → ${typeof d.new === "object" ? JSON.stringify(d.new) : d.new}` : d.column || d.what || "")}</li>`).join("")}</ul></div>` : ""}
+    ${(m.review || []).length ? `<div class="banner"><b>Check before approving</b><ul>${m.review.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+    <datalist id="cols">${cols.map((c) => `<option value="${esc(c.name)}">`).join("")}</datalist>
+    <div class="scroll"><table><thead><tr><th>Warehouse column</th><th>From file column(s)</th><th>Conversion</th><th>Parameters</th><th>Confidence</th><th>Why</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>
+    <h2 style="margin-top:18px">Not loaded (every file column is accounted for)</h2>
+    <ul class="ignore">${Object.entries(m.ignore || {}).map(([k, v]) => `<li><span class="mono">${esc(k)}</span>: ${esc(v)}</li>`).join("") || "<li class='muted'>none</li>"}</ul>
+    <div class="actions">
+      <button class="btn" id="save">Save edits as a new version</button>
+      <button class="btn" id="test">Run the data tests</button>
+      <button class="btn primary" id="approve">Approve v${r.version}</button>
+      <span class="msg" id="msg"></span></div>`;
+  $("#save").onclick = save; $("#test").onclick = runTest; $("#approve").onclick = approve;
+}
+
+function collect() {
+  const m = structuredClone(rec().mapping);
+  m.columns = [...document.querySelectorAll("tr[data-target]")].map((tr) => {
+    const old = m.columns.find((c) => c.target === tr.dataset.target) || { confidence: 1, note: "" };
+    const src = $(".f-src", tr).value.split(",").map((s) => s.trim()).filter(Boolean);
+    let params = {}; try { params = JSON.parse($(".f-params", tr).value || "{}"); } catch { throw new Error(`parameters for ${tr.dataset.target} are not valid JSON`); }
+    return { target: tr.dataset.target, source: src, transform: $(".f-tr", tr).value, params, confidence: old.confidence, note: old.note };
+  }).filter((c) => c.transform);
+  return m;
+}
+async function save() {
+  try { const r = await api(`/api/source/${state.current}/edit/${state.version}`, collect());
+    $("#msg").textContent = `saved as v${r.version}`; await open(state.current); await load(); }
+  catch (e) { $("#msg").textContent = e.message; }
+}
+async function runTest() {
+  $("#msg").textContent = "running in the sandbox…";
+  try { state.lastTest = await api(`/api/source/${state.current}/test/${state.version}`, {}); state.tab = "tests"; render(); }
+  catch (e) { $("#msg").textContent = e.message; }
+}
+async function approve() {
+  try { await api(`/api/source/${state.current}/approve/${state.version}`, {}); await open(state.current); await load(); }
+  catch (e) { $("#msg").textContent = e.message; }
+}
+
+function testRows(tests) {
+  return tests.map((t) => {
+    const kind = t.passed ? "pass" : t.family === "fidelity" ? "fail" : "quar";
+    const label = t.passed ? "pass" : t.family === "fidelity" ? "fail" : "quarantine";
+    return `<div class="test"><div>${badge(label, kind)}</div><div class="muted">${esc(t.family)}</div>
+      <div><b>${esc(t.name)}</b>${t.detail ? ` · ${esc(t.detail)}` : ""}</div>
+      ${(t.examples || []).map((e) => `<div class="ex">${esc(JSON.stringify({ ...e, row: e.row + 1 }))}</div>`).join("")}</div>`;
+  }).join("");
+}
+
+async function renderTests() {
+  const lt = state.lastTest;
+  const run = state.data.runs[state.runIndex] || state.data.runs[0];
+  const src = lt ? { tests: lt.tests, status: lt.status, rows_loaded: lt.rows_loaded, rows_quarantined: lt.rows_quarantined, label: `v${state.version}, just now` }
+                 : run ? { ...run, label: `run ${run.run_id} on ${run.file}` } : null;
+  if (!src) { $("#body").innerHTML = `<div class="empty">No test results yet. Use “Run the data tests”.</div>`; return; }
+  const failed = src.tests.filter((t) => !t.passed);
+  $("#body").innerHTML = `
+    <div class="grid2">
+      <div class="tile"><b>${badge(src.status)}</b><small>${esc(src.label)}</small></div>
+      <div class="tile"><b>${src.tests.length - failed.length}/${src.tests.length}</b><small>tests passed</small></div>
+      <div class="tile"><b>${src.rows_loaded}</b><small>rows loaded</small></div>
+      <div class="tile"><b>${src.rows_quarantined}</b><small>rows held in quarantine</small></div>
+      ${run && !lt ? `<div class="tile"><b>${run.repair_rounds}</b><small>repair rounds</small></div>` : ""}
+    </div>
+    <h2>Fidelity: is the code right?</h2>${testRows(src.tests.filter((t) => t.family === "fidelity"))}
+    <h2 style="margin-top:16px">Quality: is the data right?</h2>${testRows(src.tests.filter((t) => t.family === "quality"))}
+    <div id="quar"></div>`;
+  if (run && !lt && run.rows_quarantined) {
+    const q = await api(`/api/quarantine/${run.run_id}`);
+    const keys = Object.keys(q[0].record);
+    $("#quar").innerHTML = `<h2 style="margin-top:16px">Quarantined rows</h2><div class="scroll"><table><thead><tr><th>File row</th><th>Reason</th>${keys.map((k) => `<th>${esc(k)}</th>`).join("")}</tr></thead>
+      <tbody>${q.map((x) => `<tr><td class="num">${x.row}</td><td>${badge(x.reasons, "quar")}</td>${keys.map((k) => `<td>${esc(x.record[k] ?? "∅")}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+}
+
+function renderRuns() {
+  const runs = state.data.runs;
+  $("#body").innerHTML = runs.length ? `<div class="scroll"><table class="compact"><thead><tr><th>When (UTC)</th><th>File</th><th>File SHA-256</th><th>Mapping</th><th>Code</th><th>Status</th>
+    <th>Rows in</th><th>Loaded</th><th>Quarantined</th><th>Tests</th><th>Repairs</th><th>Calls</th></tr></thead><tbody>${runs.map((r, i) => `<tr class="runrow" data-i="${i}" title="show this run's tests">
+    <td class="mono">${esc(String(r.started_at).replace("T", " ").slice(0, 16))}</td><td class="mono">${esc(r.file)}</td><td class="mono">${esc(r.file_sha256.slice(0, 12))}</td>
+    <td>v${r.mapping_version} · ${esc(r.mapping_author)}</td><td class="mono">${esc(r.code_sha || "")}</td><td>${badge(r.status)}</td>
+    <td class="num">${r.rows_in}</td><td class="num">${r.rows_loaded}</td><td class="num">${r.rows_quarantined}</td>
+    <td class="num">${r.tests_passed}/${r.tests_passed + r.tests_failed}</td><td class="num">${r.repair_rounds}</td><td class="num">${r.model_calls}</td></tr>`).join("")}</tbody></table></div>`
+    : `<div class="empty">No runs for this source yet.</div>`;
+  document.querySelectorAll(".runrow").forEach((tr) => tr.onclick = () => {
+    state.runIndex = Number(tr.dataset.i); state.lastTest = null; state.tab = "tests"; render();
+  });
+}
+
+function highlight(code) {
+  return esc(code)
+    .replace(/(&quot;.*?&quot;|'[^'\n]*')/g, '<span class="str">$1</span>')
+    .replace(/(^|\s)(#.*)$/gm, '$1<span class="com">$2</span>')
+    .replace(/\b(def|return|import|from|if|elif|else|for|in|None|True|False|lambda|and|or|not)\b(?![^<]*>)/g, '<span class="kw">$1</span>');
+}
+function renderCode() {
+  const code = (state.lastTest && state.lastTest.code) || state.data.code;
+  $("#body").innerHTML = code ? `<pre class="code">${highlight(code)}</pre>` : `<div class="empty">No code generated yet.</div>`;
+}
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\nNULL_VALUES = {\"\", \"n/a\", \"na\", \"-\", \"null\", \"none\"}\n\n\ndef _clean_str(col: pl.Expr) -> pl.Expr:\n    c = col.str.strip_chars()\n    return pl.when(c.is_in(list(NULL_VALUES)) | c.is_null()).then(None).otherwise(c)\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        supplier=_clean_str(pl.col(\"@supplier.name\")),\n        sku=_clean_str(pl.col(\"code\")).str.to_uppercase(),\n        description=_clean_str(pl.col(\"title\")),\n        unit=_clean_str(pl.col(\"pack.unit\")).str.to_uppercase(),\n        pack_size=_clean_str(pl.col(\"pack.size\")).cast(pl.Int64, strict=False),\n        price=_clean_str(pl.col(\"price.amount\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        currency=_clean_str(pl.col(\"price.currency\")).str.to_uppercase(),\n        valid_from=_clean_str(pl.col(\"@valid_from\")).str.to_date(\n            format=\"%Y-%m-%d\", strict=False\n        ),\n    )\n```",
+ "latency_s": 1.655,
+ "prompt_tokens": 1987,
+ "completion_tokens": 332
+}

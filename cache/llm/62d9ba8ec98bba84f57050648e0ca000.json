@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\nNULL_VALUES = {\"\", \"n/a\", \"N/A\", \"-\", \"null\", \"NULL\"}\n\n\ndef _clean_str(s: pl.Expr) -> pl.Expr:\n    s_trimmed = s.str.strip_chars()\n    return pl.when(s_trimmed.is_in(list(NULL_VALUES))).then(None).otherwise(s_trimmed)\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        device_id=_clean_str(pl.col(\"device\")).str.to_uppercase(),\n        read_at=_clean_str(pl.col(\"ts\"))\n        .str.to_integer(strict=False)\n        .cast(pl.Datetime(\"s\"))\n        .dt.cast_time_unit(\"us\"),\n        temperature_c=_clean_str(pl.col(\"temp\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        humidity_pct=_clean_str(pl.col(\"rh\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        battery_v=_clean_str(pl.col(\"bat\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n    )\n```",
+ "latency_s": 1.488,
+ "prompt_tokens": 1548,
+ "completion_tokens": 320
+}

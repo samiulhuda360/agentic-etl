@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\nNULL_VALUES = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    # Pre-clean placeholder strings across all columns to nulls\n    cleaned = raw.with_columns(\n        [\n            pl.when(pl.col(c).is_in(NULL_VALUES))\n            .then(None)\n            .otherwise(pl.col(c))\n            .alias(c)\n            for c in raw.columns\n        ]\n    )\n\n    return cleaned.select(\n        [\n            pl.col(\"receipt\").str.to_uppercase().cast(pl.String).alias(\"order_id\"),\n            pl.col(\"lines.#\").cast(pl.Int64, strict=False).alias(\"line_no\"),\n            pl.col(\"ts\").str.to_datetime(\"%Y-%m-%d %H:%M:%S\", strict=False).dt.cast_time_unit(\"us\").alias(\"sold_at\"),\n            pl.col(\"store.code\").str.to_uppercase().cast(pl.String).alias(\"store\"),\n            pl.col(\"lines.sku\").str.to_uppercase().cast(pl.String).alias(\"sku\"),\n            pl.col(\"lines.qty\").cast(pl.Int64, strict=False).alias(\"qty\"),\n            pl.col(\"lines.unit\").cast(pl.Float64, strict=False).round(2).alias(\"unit_price\"),\n            pl.col(\"lines.disc\").cast(pl.Float64, strict=False).fill_null(0.0).round(2).alias(\"discount\"),\n            pl.col(\"lines.total\").cast(pl.Float64, strict=False).round(2).alias(\"line_total\"),\n        ]\n    )\n```",
+ "latency_s": 1.996,
+ "prompt_tokens": 2068,
+ "completion_tokens": 433
+}

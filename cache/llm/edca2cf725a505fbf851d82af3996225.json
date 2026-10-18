@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"bank_transactions\", \"columns\": [{\"target\": \"account\", \"source\": [\"@Account\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Account number from metadata\"}, {\"target\": \"txn_date\", \"source\": [\"Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%d/%m/%Y\"}, \"confidence\": 1.0, \"note\": \"Transaction date\"}, {\"target\": \"description\", \"source\": [\"Details\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Transaction details narrative\"}, {\"target\": \"amount\", \"source\": [\"Amount\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Signed transaction amount\"}, {\"target\": \"balance\", \"source\": [\"Balance\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Running balance\"}, {\"target\": \"reference\", \"source\": [\"Reference\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Bank unique reference\"}], \"ignore\": {\"@Period\": \"Period metadata not needed at row level since dates are per transaction\"}, \"review\": []}",
+ "latency_s": 1.683,
+ "prompt_tokens": 3257,
+ "completion_tokens": 285
+}

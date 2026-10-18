@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"bank_transactions\", \"columns\": [{\"target\": \"account\", \"source\": [\"@Account No\"], \"transform\": \"const\", \"params\": {\"value\": \"38-9000-7654321-01\"}, \"confidence\": 1.0, \"note\": \"Account number provided in metadata\"}, {\"target\": \"txn_date\", \"source\": [\"Posted Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Parse posted date\"}, {\"target\": \"description\", \"source\": [\"Particulars\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Transaction narrative\"}, {\"target\": \"amount\", \"source\": [\"Amount\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Signed transaction amount\"}, {\"target\": \"balance\", \"source\": [\"Balance\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Running balance\"}, {\"target\": \"reference\", \"source\": [\"Txn ID\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Bank transaction ID used as reference\"}], \"ignore\": {}, \"review\": []}",
+ "latency_s": 1.584,
+ "prompt_tokens": 3125,
+ "completion_tokens": 299
+}

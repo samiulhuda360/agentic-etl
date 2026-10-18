@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\"]\n\n    return raw.select(\n        device_id=pl.col(\"Sensor ID\").str.to_uppercase(),\n        read_at=pl.col(\"Recorded At\").str.strptime(\n            pl.Datetime(\"us\"), format=\"%Y-%m-%dT%H:%M:%SZ\", strict=False\n        ),\n        temperature_c=pl.col(\"Temp (C)\")\n        .str.to_lowercase()\n        .replace(null_values, None)\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        humidity_pct=pl.col(\"Humidity (%)\")\n        .str.to_lowercase()\n        .replace(null_values, None)\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        battery_v=pl.col(\"Battery (V)\")\n        .str.to_lowercase()\n        .replace(null_values, None)\n        .cast(pl.Float64, strict=False)\n        .round(2),\n    )\n```",
+ "latency_s": 1.498,
+ "prompt_tokens": 1749,
+ "completion_tokens": 288
+}

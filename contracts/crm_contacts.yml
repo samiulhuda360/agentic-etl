@@ -1,0 +1,40 @@
+table: crm_contacts
+description: One row per customer contact exported from the CRM.
+key: [contact_id]
+columns:
+  - name: contact_id
+    type: string
+    description: The CRM unique contact identifier.
+    aliases: [id, customer id, record id, contact]
+  - name: full_name
+    type: string
+    description: Contact name written as "First Last".
+    aliases: [name, contact name, customer name]
+  - name: email
+    case: lower
+    type: string
+    nullable: true
+    description: Email address, lower case.
+    aliases: [e-mail, email address, mail]
+  - name: phone
+    format: e164
+    type: string
+    nullable: true
+    description: Phone number in E.164 form, for example +6495551234 (a New Zealand number when no country code is given).
+    aliases: [phone number, mobile, tel, telephone]
+  - name: company
+    type: string
+    nullable: true
+    description: Company the contact works for.
+    aliases: [organisation, organization, employer]
+  - name: created_on
+    type: date
+    description: Date the contact was created in the CRM.
+    aliases: [created, date created, created date, signup date]
+    range: ["2000-01-01", "2030-12-31"]
+  - name: lifetime_value
+    type: decimal
+    description: Total spend to date in NZD.
+    aliases: [ltv, total spend, revenue]
+    range: [0, 10000000]
+    reconcile: true

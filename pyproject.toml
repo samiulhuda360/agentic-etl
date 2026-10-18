@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agentic-etl"
+version = "1.0.0"
+description = "A model writes the code that loads messy files into a DuckDB warehouse, and data tests prove it before anything loads."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Samiul Huda" }]
+# polars is pinned exactly: the model prompts name its version and the recorded replies are keyed by the prompt.
+dependencies = [
+  "polars==2.0.0",
+  "duckdb>=1.1",
+  "openpyxl>=3.1",
+  "pyyaml>=6",
+  "pandas>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.11", "pandas-stubs>=2.2", "types-PyYAML", "types-openpyxl"]
+
+[project.scripts]
+etl = "agentic_etl.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["agentic_etl*"]
+
+[tool.setuptools.package-data]
+agentic_etl = ["web/index.html"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"agentic_etl/_child.py" = ["SIM115"]
+
+[tool.mypy]
+python_version = "3.11"
+disallow_untyped_defs = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+files = ["agentic_etl"]
+exclude = ["agentic_etl/_child\\.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

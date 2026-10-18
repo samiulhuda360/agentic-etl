@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"crm_contacts\", \"columns\": [{\"target\": \"contact_id\", \"source\": [\"Contact ID\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Maps to CRM contact identifier.\"}, {\"target\": \"full_name\", \"source\": [\"Full Name\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Contact name.\"}, {\"target\": \"email\", \"source\": [\"Email\"], \"transform\": \"text\", \"params\": {\"case\": \"lower\"}, \"confidence\": 1.0, \"note\": \"Email address, normalized to lower case.\"}, {\"target\": \"phone\", \"source\": [\"Phone\"], \"transform\": \"phone_e164\", \"params\": {\"country\": 64}, \"confidence\": 1.0, \"note\": \"Phone number converted to E.164.\"}, {\"target\": \"company\", \"source\": [\"Company\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Company name.\"}, {\"target\": \"created_on\", \"source\": [\"Created On\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Creation date.\"}, {\"target\": \"lifetime_value\", \"source\": [\"Lifetime Value\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Total spend to date in NZD.\"}], \"ignore\": {}, \"review\": []}",
+ "latency_s": 1.647,
+ "prompt_tokens": 3144,
+ "completion_tokens": 338
+}

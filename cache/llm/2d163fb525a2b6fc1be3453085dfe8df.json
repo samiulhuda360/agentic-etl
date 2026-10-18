@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n \"table\": \"sensor_readings\",\n \"columns\": [\n  {\n   \"target\": \"device_id\",\n   \"source\": [\n    \"Device\"\n   ],\n   \"transform\": \"text\",\n   \"params\": {\n    \"case\": \"upper\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Device code mapped to sensor serial\"\n  },\n  {\n   \"target\": \"read_at\",\n   \"source\": [\n    \"Time\"\n   ],\n   \"transform\": \"datetime\",\n   \"params\": {\n    \"format\": \"%d/%m/%Y %H:%M\"\n   },\n   \"confidence\": 0.95,\n   \"note\": \"Parsed using format from profile\"\n  },\n  {\n   \"target\": \"temperature_c\",\n   \"source\": [\n    \"Temperature\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Extracted numerical temperature in Celsius\"\n  },\n  {\n   \"target\": \"humidity_pct\",\n   \"source\": [\n    \"Humidity\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Extracted numerical humidity percentage\"\n  },\n  {\n   \"target\": \"battery_v\",\n   \"source\": [\n    \"Battery\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Extracted numerical battery voltage\"\n  }\n ],\n \"ignore\": {},\n \"review\": [\n  \"Date format '%d/%m/%Y %H:%M' also fits '%m/%d/%Y %H:%M', assumed day-first (European/NZ standard).\"\n ]\n}",
+ "latency_s": 1.916,
+ "prompt_tokens": 3047,
+ "completion_tokens": 461
+}

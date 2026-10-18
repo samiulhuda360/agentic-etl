@@ -1,0 +1,794 @@
+{
+ "files": [
+  {
+   "id": "b1",
+   "file": "files/harbour_bank_2026-03.csv",
+   "source": "harbour_bank",
+   "table": "bank_transactions",
+   "rows": 28,
+   "quirks": [
+    "preamble lines",
+    "account number only in the preamble",
+    "dd/mm/yyyy dates",
+    "closing-balance footer"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/b1.csv"
+  },
+  {
+   "id": "b2",
+   "file": "files/kauri_bank_2026-03.csv",
+   "source": "kauri_bank",
+   "table": "bank_transactions",
+   "rows": 28,
+   "quirks": [
+    "separate debit and credit columns",
+    "$1,234.56 amounts",
+    "'03 Mar 2026' dates"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/b2.csv"
+  },
+  {
+   "id": "b3",
+   "file": "files/harbour_bank_export_eu.csv",
+   "source": "harbour_bank_eu",
+   "table": "bank_transactions",
+   "rows": 28,
+   "quirks": [
+    "Windows-1252 encoding",
+    "semicolon delimiter",
+    "decimal commas (1.234,56)",
+    "dd.mm.yyyy dates"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/b3.csv"
+  },
+  {
+   "id": "b4",
+   "file": "files/kauri_bank_q1.xlsx",
+   "source": "kauri_bank_xlsx",
+   "table": "bank_transactions",
+   "rows": 30,
+   "quirks": [
+    "title rows above the header",
+    "account number in a title row",
+    "real Excel dates"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/b4.csv"
+  },
+  {
+   "id": "b5",
+   "file": "files/harbour_bank_usd.tsv",
+   "source": "harbour_bank_us",
+   "table": "bank_transactions",
+   "rows": 28,
+   "quirks": [
+    "tab delimiter",
+    "mm/dd/yyyy dates",
+    "(45.20) negatives",
+    "thousands separators"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/b5.csv"
+  },
+  {
+   "id": "b6",
+   "file": "files/harbour_bank_2026-04.csv",
+   "source": "harbour_bank",
+   "table": "bank_transactions",
+   "rows": 26,
+   "quirks": [
+    "preamble lines",
+    "closing-balance footer"
+   ],
+   "planted": [
+    {
+     "problem": "duplicate reference",
+     "test": "unique",
+     "rows": 1
+    },
+    {
+     "problem": "missing reference",
+     "test": "not_null",
+     "rows": 1
+    },
+    {
+     "problem": "date in 2031",
+     "test": "range",
+     "rows": 1
+    }
+   ],
+   "quarantine": 3,
+   "gold": "gold/b6.csv"
+  },
+  {
+   "id": "s1",
+   "file": "files/acme_fasteners_2026.xlsx",
+   "source": "acme_fasteners",
+   "table": "supplier_prices",
+   "rows": 27,
+   "quirks": [
+    "three data sheets plus a notes sheet",
+    "merged two-row header",
+    "supplier and date only in title rows"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/s1.csv"
+  },
+  {
+   "id": "s2",
+   "file": "files/bayline_prices.csv",
+   "source": "bayline",
+   "table": "supplier_prices",
+   "rows": 24,
+   "quirks": [
+    "NZ$ prices",
+    "lower-case units",
+    "currency only implied by the symbol"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/s2.csv"
+  },
+  {
+   "id": "s3",
+   "file": "files/nordwerk_preisliste.csv",
+   "source": "nordwerk",
+   "table": "supplier_prices",
+   "rows": 24,
+   "quirks": [
+    "German headers",
+    "semicolon delimiter",
+    "decimal commas with a euro sign",
+    "dd.mm.yyyy dates",
+    "supplier name only in the first line"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/s3.csv"
+  },
+  {
+   "id": "s4",
+   "file": "files/kowhai_erp_export.txt",
+   "source": "kowhai",
+   "table": "supplier_prices",
+   "rows": 24,
+   "quirks": [
+    "fixed-width layout",
+    "descriptions with spaces",
+    "yyyymmdd dates"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/s4.csv"
+  },
+  {
+   "id": "s5",
+   "file": "files/ironleaf_catalogue.json",
+   "source": "ironleaf",
+   "table": "supplier_prices",
+   "rows": 24,
+   "quirks": [
+    "nested JSON",
+    "supplier and date at the top level"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/s5.csv"
+  },
+  {
+   "id": "s6",
+   "file": "files/tidewater_timber.csv",
+   "source": "tidewater",
+   "table": "supplier_prices",
+   "rows": 22,
+   "quirks": [
+    "clean layout"
+   ],
+   "planted": [
+    {
+     "problem": "duplicate SKU",
+     "test": "unique",
+     "rows": 1
+    },
+    {
+     "problem": "unknown currency XYZ",
+     "test": "accepted_values",
+     "rows": 1
+    },
+    {
+     "problem": "negative price",
+     "test": "range",
+     "rows": 1
+    }
+   ],
+   "quarantine": 3,
+   "gold": "gold/s6.csv"
+  },
+  {
+   "id": "p1",
+   "file": "files/pos_export_2026-03-02.json",
+   "source": "pos_json",
+   "table": "pos_sales",
+   "rows": 35,
+   "quirks": [
+    "nested JSON orders with line items",
+    "store code only at the top level",
+    "a cashier field to ignore"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/p1.csv"
+  },
+  {
+   "id": "p2",
+   "file": "files/pos_ak02_2026-03-03.ndjson",
+   "source": "pos_ndjson",
+   "table": "pos_sales",
+   "rows": 38,
+   "quirks": [
+    "one JSON object per line",
+    "line number only implied by position",
+    "discount missing when zero",
+    "lower-case store code"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/p2.csv"
+  },
+  {
+   "id": "p3",
+   "file": "files/pos_flat_export.csv",
+   "source": "pos_flat",
+   "table": "pos_sales",
+   "rows": 38,
+   "quirks": [
+    "$ amounts",
+    "dd/mm/yyyy hh:mm:ss times"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/p3.csv"
+  },
+  {
+   "id": "p4",
+   "file": "files/pos_weekly.xlsx",
+   "source": "pos_xlsx",
+   "table": "pos_sales",
+   "rows": 35,
+   "quirks": [
+    "one sheet per store",
+    "store only in the sheet name",
+    "date and time in separate columns",
+    "a summary sheet to skip"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/p4.csv"
+  },
+  {
+   "id": "p5",
+   "file": "files/pos_cents.json",
+   "source": "pos_cents",
+   "table": "pos_sales",
+   "rows": 35,
+   "quirks": [
+    "amounts in cents",
+    "compact 20260306T091522 timestamps",
+    "minified JSON"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/p5.csv"
+  },
+  {
+   "id": "p6",
+   "file": "files/pos_export_2026-03-09.json",
+   "source": "pos_json",
+   "table": "pos_sales",
+   "rows": 38,
+   "quirks": [
+    "nested JSON orders"
+   ],
+   "planted": [
+    {
+     "problem": "order with no order number",
+     "test": "not_null",
+     "rows": 3
+    },
+    {
+     "problem": "quantity 999",
+     "test": "range",
+     "rows": 1
+    },
+    {
+     "problem": "line item sent twice",
+     "test": "unique",
+     "rows": 1
+    }
+   ],
+   "quarantine": 5,
+   "gold": "gold/p6.csv"
+  },
+  {
+   "id": "t1",
+   "file": "files/timesheet_week12.xlsx",
+   "source": "timesheet_xlsx",
+   "table": "timesheets",
+   "rows": 30,
+   "quirks": [
+    "merged two-row header",
+    "names written 'Last, First'",
+    "a title row"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/t1.csv"
+  },
+  {
+   "id": "t2",
+   "file": "files/timesheets_march.csv",
+   "source": "timesheet_hm",
+   "table": "timesheets",
+   "rows": 30,
+   "quirks": [
+    "hours written as h:mm",
+    "lower-case project codes"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/t2.csv"
+  },
+  {
+   "id": "t3",
+   "file": "files/payroll_export.txt",
+   "source": "payroll_fixed",
+   "table": "timesheets",
+   "rows": 30,
+   "quirks": [
+    "fixed-width layout",
+    "yyyymmdd dates",
+    "an export-date line and an end-of-file line"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/t3.csv"
+  },
+  {
+   "id": "t4",
+   "file": "files/timesheet_bom.csv",
+   "source": "timesheet_bom",
+   "table": "timesheets",
+   "rows": 30,
+   "quirks": [
+    "UTF-8 byte-order mark",
+    "semicolon delimiter",
+    "decimal commas"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/t4.csv"
+  },
+  {
+   "id": "t5",
+   "file": "files/timesheets.json",
+   "source": "timesheet_json",
+   "table": "timesheets",
+   "rows": 30,
+   "quirks": [
+    "nested JSON",
+    "first and last name in separate fields"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/t5.csv"
+  },
+  {
+   "id": "t6",
+   "file": "files/timesheet_week13.csv",
+   "source": "timesheet_clean",
+   "table": "timesheets",
+   "rows": 28,
+   "quirks": [
+    "clean layout"
+   ],
+   "planted": [
+    {
+     "problem": "25 hours in a day",
+     "test": "range",
+     "rows": 1
+    },
+    {
+     "problem": "entry sent twice",
+     "test": "unique",
+     "rows": 1
+    },
+    {
+     "problem": "missing employee ID",
+     "test": "not_null",
+     "rows": 1
+    }
+   ],
+   "quarantine": 3,
+   "gold": "gold/t6.csv"
+  },
+  {
+   "id": "i1",
+   "file": "files/coldstore_dump_0301.csv",
+   "source": "coldstore_csv",
+   "table": "sensor_readings",
+   "rows": 48,
+   "quirks": [
+    "Unix epoch timestamps",
+    "lower-case device IDs",
+    "terse headers"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/i1.csv"
+  },
+  {
+   "id": "i2",
+   "file": "files/coldstore_fahrenheit.csv",
+   "source": "coldstore_f",
+   "table": "sensor_readings",
+   "rows": 36,
+   "quirks": [
+    "temperature in Fahrenheit",
+    "ISO timestamps with Z"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/i2.csv"
+  },
+  {
+   "id": "i3",
+   "file": "files/gateway_dump.txt",
+   "source": "gateway_fixed",
+   "table": "sensor_readings",
+   "rows": 36,
+   "quirks": [
+    "fixed-width layout",
+    "timestamps containing a space"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/i3.csv"
+  },
+  {
+   "id": "i4",
+   "file": "files/sensors.ndjson",
+   "source": "sensor_ndjson",
+   "table": "sensor_readings",
+   "rows": 36,
+   "quirks": [
+    "one JSON object per line",
+    "nested payload",
+    "battery in millivolts"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/i4.csv"
+  },
+  {
+   "id": "i5",
+   "file": "files/sensor_units.psv",
+   "source": "sensor_units",
+   "table": "sensor_readings",
+   "rows": 32,
+   "quirks": [
+    "pipe delimiter",
+    "units written inside the values (21.4\u00b0C, 55%, 3.71V)",
+    "dd/mm/yyyy hh:mm"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/i5.csv"
+  },
+  {
+   "id": "i6",
+   "file": "files/coldstore_dump_0308.csv",
+   "source": "coldstore_csv",
+   "table": "sensor_readings",
+   "rows": 46,
+   "quirks": [
+    "Unix epoch timestamps"
+   ],
+   "planted": [
+    {
+     "problem": "-999 error code as a temperature",
+     "test": "range",
+     "rows": 1
+    },
+    {
+     "problem": "140% humidity",
+     "test": "range",
+     "rows": 1
+    },
+    {
+     "problem": "reading sent twice",
+     "test": "unique",
+     "rows": 1
+    }
+   ],
+   "quarantine": 3,
+   "gold": "gold/i6.csv"
+  },
+  {
+   "id": "c1",
+   "file": "files/crm_export_utf16.txt",
+   "source": "crm_utf16",
+   "table": "crm_contacts",
+   "rows": 26,
+   "quirks": [
+    "UTF-16 text export",
+    "tab delimiter",
+    "first and last name in separate columns",
+    "mixed-case emails",
+    "+64 9 555 1234 phones"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/c1.csv"
+  },
+  {
+   "id": "c2",
+   "file": "files/crm_contacts_notes.csv",
+   "source": "crm_notes",
+   "table": "crm_contacts",
+   "rows": 26,
+   "quirks": [
+    "a notes column with line breaks and quotes",
+    "(09) 555 1234 phones",
+    "'14-Feb-2026' dates",
+    "$ amounts"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/c2.csv"
+  },
+  {
+   "id": "c3",
+   "file": "files/crm_contacts.xlsx",
+   "source": "crm_xlsx",
+   "table": "crm_contacts",
+   "rows": 26,
+   "quirks": [
+    "a notes sheet to skip",
+    "Excel dates"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/c3.csv"
+  },
+  {
+   "id": "c4",
+   "file": "files/crm_api_dump.json",
+   "source": "crm_api",
+   "table": "crm_contacts",
+   "rows": 26,
+   "quirks": [
+    "nested JSON",
+    "first and last name in separate fields",
+    "created as a timestamp, not a date",
+    "extra fields to ignore"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/c4.csv"
+  },
+  {
+   "id": "c5",
+   "file": "files/crm_semicolon.csv",
+   "source": "crm_semicolon",
+   "table": "crm_contacts",
+   "rows": 26,
+   "quirks": [
+    "semicolon delimiter",
+    "decimal commas",
+    "64 21 555 1234 phones",
+    "timestamps for a date column"
+   ],
+   "planted": [],
+   "quarantine": 0,
+   "gold": "gold/c5.csv"
+  },
+  {
+   "id": "c6",
+   "file": "files/crm_export_2026-04.csv",
+   "source": "crm_clean",
+   "table": "crm_contacts",
+   "rows": 24,
+   "quirks": [
+    "clean layout"
+   ],
+   "planted": [
+    {
+     "problem": "contact ID used twice",
+     "test": "unique",
+     "rows": 1
+    },
+    {
+     "problem": "missing contact ID",
+     "test": "not_null",
+     "rows": 1
+    },
+    {
+     "problem": "created on 1899-12-31",
+     "test": "range",
+     "rows": 1
+    }
+   ],
+   "quarantine": 3,
+   "gold": "gold/c6.csv"
+  }
+ ],
+ "drift": [
+  {
+   "id": "d01",
+   "base": "b1",
+   "file": "drift/d01_harbour_bank_2026-05.csv",
+   "table": "bank_transactions",
+   "rows": 28,
+   "kinds": [
+    "renamed"
+   ],
+   "expect": "loaded",
+   "what": "Amount became 'Amount (NZD)'",
+   "gold": "gold/d01.csv"
+  },
+  {
+   "id": "d02",
+   "base": "b2",
+   "file": "drift/d02_kauri_bank_2026-04.csv",
+   "table": "bank_transactions",
+   "rows": 28,
+   "kinds": [
+    "format"
+   ],
+   "expect": "loaded",
+   "what": "dates changed from '03 Mar 2026' to 2026-03-03",
+   "gold": "gold/d02.csv"
+  },
+  {
+   "id": "d03",
+   "base": "s2",
+   "file": "drift/d03_bayline_prices_may.csv",
+   "table": "supplier_prices",
+   "rows": 24,
+   "kinds": [
+    "added"
+   ],
+   "expect": "review",
+   "what": "a new 'Discount %' column the table has no place for",
+   "gold": "gold/d03.csv"
+  },
+  {
+   "id": "d04",
+   "base": "p3",
+   "file": "drift/d04_pos_flat_export_apr.csv",
+   "table": "pos_sales",
+   "rows": 37,
+   "kinds": [
+    "renamed",
+    "reordered"
+   ],
+   "expect": "loaded",
+   "what": "'Quantity' became 'Qty' and moved after 'Each'",
+   "gold": "gold/d04.csv"
+  },
+  {
+   "id": "d05",
+   "base": "t2",
+   "file": "drift/d05_timesheets_april.csv",
+   "table": "timesheets",
+   "rows": 30,
+   "kinds": [
+    "format"
+   ],
+   "expect": "loaded",
+   "what": "hours changed from 7:30 to 7.50",
+   "gold": "gold/d05.csv"
+  },
+  {
+   "id": "d06",
+   "base": "i2",
+   "file": "drift/d06_coldstore_celsius.csv",
+   "table": "sensor_readings",
+   "rows": 36,
+   "kinds": [
+    "renamed",
+    "unit"
+   ],
+   "expect": "review",
+   "what": "the gateway now reports Celsius: 'Temp (F)' became 'Temp (C)'",
+   "gold": "gold/d06.csv"
+  },
+  {
+   "id": "d07",
+   "base": "i1",
+   "file": "drift/d07_coldstore_dump_0401.csv",
+   "table": "sensor_readings",
+   "rows": 48,
+   "kinds": [
+    "read"
+   ],
+   "expect": "loaded",
+   "what": "the delimiter changed to ';'",
+   "gold": "gold/d07.csv"
+  },
+  {
+   "id": "d08",
+   "base": "c2",
+   "file": "drift/d08_crm_contacts_split_name.csv",
+   "table": "crm_contacts",
+   "rows": 26,
+   "kinds": [
+    "split"
+   ],
+   "expect": "review",
+   "what": "'Name' was split into 'First Name' and 'Last Name'",
+   "gold": "gold/d08.csv"
+  },
+  {
+   "id": "d09",
+   "base": "c5",
+   "file": "drift/d09_crm_semicolon_no_id.csv",
+   "table": "crm_contacts",
+   "rows": 26,
+   "kinds": [
+    "removed"
+   ],
+   "expect": "blocked",
+   "what": "the 'ID' column (the table key) is missing",
+   "gold": "gold/d09.csv"
+  },
+  {
+   "id": "d10",
+   "base": "s3",
+   "file": "drift/d10_nordwerk_preisliste_mai.csv",
+   "table": "supplier_prices",
+   "rows": 24,
+   "kinds": [
+    "format"
+   ],
+   "expect": "loaded",
+   "what": "prices changed from '12,50 \u20ac' to 'EUR 12.50'",
+   "gold": "gold/d10.csv"
+  }
+ ],
+ "keys": {
+  "bank_transactions": [
+   "account",
+   "reference"
+  ],
+  "supplier_prices": [
+   "supplier",
+   "sku"
+  ],
+  "pos_sales": [
+   "order_id",
+   "line_no"
+  ],
+  "timesheets": [
+   "employee_id",
+   "work_date",
+   "project_code"
+  ],
+  "sensor_readings": [
+   "device_id",
+   "read_at"
+  ],
+  "crm_contacts": [
+   "contact_id"
+  ]
+ }
+}

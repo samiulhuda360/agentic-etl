@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    def clean_money(col: str) -> pl.Expr:\n        return (\n            pl.col(col)\n            .str.replace_all(r\"[\\$,]\", \"\")\n            .cast(pl.Float64, strict=False)\n            .round(2)\n        )\n\n    return raw.select(\n        order_id=pl.col(\"Receipt No\").str.to_uppercase(),\n        line_no=pl.col(\"Line\").cast(pl.Int64, strict=False),\n        sold_at=pl.col(\"Sold At\").str.to_datetime(\"%d/%m/%Y %H:%M:%S\", strict=False),\n        store=pl.col(\"Store\").str.to_uppercase(),\n        sku=pl.col(\"PLU\").str.to_uppercase(),\n        qty=pl.col(\"Qty\").cast(pl.Int64, strict=False),\n        unit_price=clean_money(\"Each\"),\n        discount=clean_money(\"Disc\"),\n        line_total=clean_money(\"Line Amount\"),\n    )\n```",
+ "latency_s": 1.555,
+ "prompt_tokens": 2578,
+ "completion_tokens": 282
+}

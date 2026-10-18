@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    # Split \"Last, First\" into \"First Last\"\n    name_parts = raw.get_column(\"Employee Name\").str.splitn(\", \", 2)\n    last_name = name_parts.struct.field(\"field_0\")\n    first_name = name_parts.struct.field(\"field_1\")\n    full_name = pl.when(first_name.is_not_null() & last_name.is_not_null()).then(\n        first_name + \" \" + last_name\n    ).otherwise(raw.get_column(\"Employee Name\"))\n\n    return raw.select(\n        employee_id=pl.col(\"Employee ID\").str.to_uppercase(),\n        employee_name=full_name,\n        work_date=pl.col(\"Date\").str.to_date(\"%Y-%m-%d\", strict=False),\n        project_code=pl.col(\"Project\").str.to_uppercase(),\n        hours_normal=pl.col(\"Hours Normal\").cast(pl.Float64, strict=False).round(2),\n        hours_overtime=pl.col(\"Hours Overtime\").cast(pl.Float64, strict=False).round(2),\n    )\n```",
+ "latency_s": 3.911,
+ "prompt_tokens": 1734,
+ "completion_tokens": 303
+}

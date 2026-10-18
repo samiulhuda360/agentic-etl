@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        account=pl.lit(\"38-9000-7654321-01\"),\n        txn_date=pl.col(\"Posted Date\").str.to_date(\"%Y-%m-%d\", strict=False),\n        description=pl.col(\"Particulars\"),\n        amount=pl.col(\"Amount\")\n        .str.to_decimal(strict=False)\n        .cast(pl.Float64)\n        .round(2),\n        balance=pl.col(\"Balance\")\n        .str.to_decimal(strict=False)\n        .cast(pl.Float64)\n        .round(2),\n        reference=pl.col(\"Txn ID\"),\n    )\n```",
+ "latency_s": 1.297,
+ "prompt_tokens": 1826,
+ "completion_tokens": 196
+}

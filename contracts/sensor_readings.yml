@@ -1,0 +1,32 @@
+table: sensor_readings
+description: One reading from a cold-store environment sensor.
+key: [device_id, read_at]
+columns:
+  - name: device_id
+    case: upper
+    type: string
+    description: Sensor serial, upper case.
+    aliases: [device, sensor, sensor id, serial, dev]
+  - name: read_at
+    type: datetime
+    description: Time of the reading in UTC.
+    aliases: [timestamp, time, ts, reading time, recorded at]
+    range: ["2000-01-01", "2030-12-31"]
+  - name: temperature_c
+    type: float
+    description: Air temperature in degrees Celsius.
+    aliases: [temperature, temp, temp c]
+    range: [-40, 85]
+    tolerance: 0.06
+  - name: humidity_pct
+    type: float
+    description: Relative humidity in percent (0 to 100).
+    aliases: [humidity, rh, relative humidity]
+    range: [0, 100]
+    tolerance: 0.06
+  - name: battery_v
+    type: float
+    description: Battery voltage in volts.
+    aliases: [battery, bat, voltage, batt]
+    range: [0, 5]
+    tolerance: 0.006

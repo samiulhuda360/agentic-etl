@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n  \"table\": \"sensor_readings\",\n  \"columns\": [\n    {\n      \"target\": \"device_id\",\n      \"source\": [\n        \"dev\"\n      ],\n      \"transform\": \"text\",\n      \"params\": {\n        \"case\": \"upper\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Device serial number, already upper case in source\"\n    },\n    {\n      \"target\": \"read_at\",\n      \"source\": [\n        \"ts\"\n      ],\n      \"transform\": \"datetime\",\n      \"params\": {\n        \"format\": \"%Y-%m-%dT%H:%M:%SZ\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"UTC timestamp in ISO format\"\n    },\n    {\n      \"target\": \"temperature_c\",\n      \"source\": [\n        \"payload.t\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Air temperature in degrees Celsius\"\n    },\n    {\n      \"target\": \"humidity_pct\",\n      \"source\": [\n        \"payload.h\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Relative humidity percentage\"\n    },\n    {\n      \"target\": \"battery_v\",\n      \"source\": [\n        \"payload.bat_mv\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\",\n        \"factor\": 0.001\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Convert millivolts to volts\"\n    }\n  ],\n  \"ignore\": {},\n  \"review\": []\n}",
+ "latency_s": 2.178,
+ "prompt_tokens": 3057,
+ "completion_tokens": 447
+}

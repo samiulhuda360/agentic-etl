@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport math\nimport re\nfrom datetime import datetime\nimport polars as pl\n\nNULL_VALUES = {\"\", \"n/a\", \"na\", \"-\", \"null\", \"none\", \"nan\"}\n\ndef _clean_str(col: pl.Expr) -> pl.Expr:\n    return pl.when(col.str.to_lowercase().is_in(list(NULL_VALUES))).then(None).otherwise(col)\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        device_id=_clean_str(pl.col(\"device\")).str.to_uppercase(),\n        read_at=pl.from_epoch(\n            _clean_str(pl.col(\"ts\")).cast(pl.Int64, strict=False),\n            time_unit=\"s\"\n        ),\n        temperature_c=_clean_str(pl.col(\"temp\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        humidity_pct=_clean_str(pl.col(\"rh\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        battery_v=_clean_str(pl.col(\"bat\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n    )\n```",
+ "latency_s": 1.324,
+ "prompt_tokens": 1563,
+ "completion_tokens": 306
+}

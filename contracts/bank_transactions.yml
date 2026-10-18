@@ -1,0 +1,31 @@
+table: bank_transactions
+description: One row per line on a bank statement, money in the account currency (negative means money out).
+key: [account, reference]
+columns:
+  - name: account
+    type: string
+    description: Bank account number, for example 12-3456-7890123-00.
+    aliases: [account number, acct, account no]
+  - name: txn_date
+    type: date
+    description: Date the transaction was made.
+    aliases: [date, transaction date, posted date, value date]
+    range: ["2000-01-01", "2030-12-31"]
+  - name: description
+    type: string
+    description: Free-text narrative of the transaction (payee, merchant).
+    aliases: [details, narrative, particulars, memo, payee]
+  - name: amount
+    type: decimal
+    description: Signed amount; money in is positive, money out is negative.
+    aliases: [value, amt, transaction amount]
+    reconcile: true
+  - name: balance
+    type: decimal
+    nullable: true
+    description: Running balance after the transaction.
+    aliases: [running balance]
+  - name: reference
+    type: string
+    description: The bank's unique reference for the transaction line.
+    aliases: [ref, transaction id, txn id, reference number]

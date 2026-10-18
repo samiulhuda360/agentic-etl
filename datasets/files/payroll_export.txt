@@ -1,0 +1,33 @@
+Exported: 2026-03-14
+EMPNO  NAME               WORKDATE PROJ      NRM   OVT
+E1001  Sarah Clarke       20260309 P-1002   6.00  1.50
+E1001  Sarah Clarke       20260310 P-3100   7.50  0.00
+E1001  Sarah Clarke       20260311 P-3100   8.00  0.75
+E1001  Sarah Clarke       20260312 ADMIN    7.25  2.00
+E1001  Sarah Clarke       20260313 P-1002   7.25  0.00
+E1002  James Walker       20260309 P-1002   8.00  0.75
+E1002  James Walker       20260310 P-2040   8.00  0.00
+E1002  James Walker       20260311 ADMIN    6.00  0.00
+E1002  James Walker       20260312 ADMIN    8.00  0.00
+E1002  James Walker       20260313 P-1002   8.00  0.00
+E1003  Emma Bennett       20260309 P-1001   4.50  0.00
+E1003  Emma Bennett       20260310 P-3100   7.50  0.00
+E1003  Emma Bennett       20260311 P-1001   4.50  2.00
+E1003  Emma Bennett       20260312 P-3100   8.00  0.00
+E1003  Emma Bennett       20260313 P-1002   8.00  0.00
+E1004  Tom Hughes         20260309 P-1001   8.00  2.00
+E1004  Tom Hughes         20260310 ADMIN    6.00  2.00
+E1004  Tom Hughes         20260311 ADMIN    6.00  0.75
+E1004  Tom Hughes         20260312 P-1001   6.00  0.00
+E1004  Tom Hughes         20260313 P-1002   8.00  0.00
+E1005  Claire Turner      20260309 P-1001   7.50  0.00
+E1005  Claire Turner      20260310 P-1001   8.00  2.00
+E1005  Claire Turner      20260311 P-2040   8.00  1.50
+E1005  Claire Turner      20260312 P-1002   7.25  0.00
+E1005  Claire Turner      20260313 P-1002   4.50  0.00
+E1006  Oliver Parker      20260309 P-3100   6.00  0.00
+E1006  Oliver Parker      20260310 P-1002   8.00  0.75
+E1006  Oliver Parker      20260311 P-2040   7.25  0.00
+E1006  Oliver Parker      20260312 P-3100   7.25  1.50
+E1006  Oliver Parker      20260313 ADMIN    6.00  0.00
+END OF FILE 30 RECORDS

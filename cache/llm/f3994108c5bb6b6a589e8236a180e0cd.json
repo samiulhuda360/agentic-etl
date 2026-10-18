@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"bank_transactions\", \"columns\": [{\"target\": \"account\", \"source\": [\"Account Number\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Bank account number\"}, {\"target\": \"txn_date\", \"source\": [\"Transaction Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%d %b %Y\"}, \"confidence\": 1.0, \"note\": \"Date transaction made\"}, {\"target\": \"description\", \"source\": [\"Description\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Transaction narrative\"}, {\"target\": \"amount\", \"source\": [\"Debit\", \"Credit\"], \"transform\": \"debit_credit\", \"params\": {\"decimal\": \".\", \"thousands\": \",\"}, \"confidence\": 1.0, \"note\": \"Signed amount from debit and credit columns\"}, {\"target\": \"balance\", \"source\": [\"Balance\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\", \"thousands\": \",\"}, \"confidence\": 1.0, \"note\": \"Running balance\"}, {\"target\": \"reference\", \"source\": [\"Ref No\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Bank transaction reference\"}], \"ignore\": {}, \"review\": []}",
+ "latency_s": 1.623,
+ "prompt_tokens": 3211,
+ "completion_tokens": 287
+}

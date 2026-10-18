@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    def parse_number(col_name: str) -> pl.Expr:\n        return (\n            pl.col(col_name)\n            .str.replace_all(r\"\\.\", \"\")\n            .str.replace(r\",\", \".\")\n            .cast(pl.Float64, strict=False)\n            .round(2)\n        )\n\n    return raw.select(\n        account=pl.col(\"Acct\"),\n        txn_date=pl.col(\"Value Date\").str.to_date(\"%d.%m.%Y\", strict=False),\n        description=pl.col(\"Narrative\"),\n        amount=parse_number(\"Amount\"),\n        balance=parse_number(\"Running Balance\"),\n        reference=pl.col(\"Transaction ID\"),\n    )\n```",
+ "latency_s": 1.272,
+ "prompt_tokens": 1863,
+ "completion_tokens": 199
+}

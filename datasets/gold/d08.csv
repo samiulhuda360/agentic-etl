@@ -1,0 +1,27 @@
+contact_id,full_name,email,phone,company,created_on,lifetime_value
+C-08400,Sam Bennett,sam.bennett@example.com,+64215638702,Pukeko Joinery,2025-03-04,3903.58
+C-08403,Ben Bailey,ben.bailey@example.com,+64216378717,Pukeko Joinery,2025-01-12,5237.15
+C-08406,Josh Cooper,,+6497778906,Northgate Property,2025-09-17,3375.58
+C-08409,Amelia Hughes,amelia.hughes@example.com,+6493982072,Acme Home & Garden,2025-09-18,1487.79
+C-08412,James Cooper,james.cooper@example.com,+64218504436,Seaview Dental,2025-07-18,1157.46
+C-08415,Lucy Mitchell,lucy.mitchell@example.com,+6493873101,Tidewater Landscapes,2025-03-10,1772.86
+C-08418,Ryan Hughes,ryan.hughes@example.com,+64219374768,Bayline Cafe Group,2025-10-02,4876.70
+C-08421,Kate Turner,kate.turner@example.com,+64212410587,Harbourside Events,2025-06-20,11891.34
+C-08424,Sarah Hayes,,,Harbourside Events,2025-08-22,2420.22
+C-08427,Nathan Turner,,+6492002646,Northgate Property,2025-06-13,10263.16
+C-08430,Hannah Fletcher,hannah.fletcher@example.com,+6498972629,Tidewater Landscapes,2025-07-24,3877.30
+C-08433,Jack Wallace,jack.wallace@example.com,+6497076648,Kowhai Builders,2025-05-04,1565.67
+C-08436,James Fletcher,james.fletcher@example.com,+64214235513,Ironleaf Studio,2025-05-09,10387.33
+C-08439,Ben Hughes,ben.hughes@example.com,+64212191161,Tidewater Landscapes,2025-06-01,5286.48
+C-08442,Sarah Fletcher,sarah.fletcher@example.com,+64215656484,Riverbend Motors,2025-12-01,7941.79
+C-08445,Ryan Walker,ryan.walker@example.com,,Ironleaf Studio,2025-11-07,109.25
+C-08448,Daniel Clarke,daniel.clarke@example.com,,Tidewater Landscapes,2025-03-11,5664.78
+C-08451,Ella Walker,ella.walker@example.com,+6492501514,Northgate Property,2025-04-13,3099.42
+C-08454,Chloe Spencer,chloe.spencer@example.com,+64212561577,Harbourside Events,2025-03-15,9146.42
+C-08457,Hannah Mitchell,hannah.mitchell@example.com,+64211370740,Tidewater Landscapes,2025-04-21,7815.57
+C-08460,Oliver Spencer,oliver.spencer@example.com,+6498951871,Acme Home & Garden,2026-03-01,10278.27
+C-08463,Kate Lawson,,+6492559955,Ironleaf Studio,2026-01-06,2839.47
+C-08466,Nathan Fletcher,nathan.fletcher@example.com,+64217867923,Riverbend Motors,2025-05-09,6901.07
+C-08469,Nathan Clarke,nathan.clarke@example.com,+64212286372,Harbourside Events,2025-04-12,5187.92
+C-08472,Ben Brooks,ben.brooks@example.com,,Pukeko Joinery,2025-10-26,8459.98
+C-08475,Sophie Mitchell,sophie.mitchell@example.com,+6492888314,Pukeko Joinery,2025-11-09,1677.75

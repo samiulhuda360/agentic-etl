@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n  \"table\": \"sensor_readings\",\n  \"columns\": [\n    {\n      \"target\": \"device_id\",\n      \"source\": [\n        \"SERIAL\"\n      ],\n      \"transform\": \"text\",\n      \"params\": {\n        \"case\": \"upper\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Maps sensor serial directly.\"\n    },\n    {\n      \"target\": \"read_at\",\n      \"source\": [\n        \"TIMESTAMP\"\n      ],\n      \"transform\": \"datetime\",\n      \"params\": {\n        \"format\": \"%Y-%m-%d %H:%M:%S\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Reads timestamp in UTC.\"\n    },\n    {\n      \"target\": \"temperature_c\",\n      \"source\": [\n        \"TEMP_C\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Air temperature in Celsius.\"\n    },\n    {\n      \"target\": \"humidity_pct\",\n      \"source\": [\n        \"RH\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Relative humidity percentage.\"\n    },\n    {\n      \"target\": \"battery_v\",\n      \"source\": [\n        \"VBAT\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Battery voltage in volts.\"\n    }\n  ],\n  \"ignore\": {},\n  \"review\": []\n}",
+ "latency_s": 1.925,
+ "prompt_tokens": 3066,
+ "completion_tokens": 421
+}

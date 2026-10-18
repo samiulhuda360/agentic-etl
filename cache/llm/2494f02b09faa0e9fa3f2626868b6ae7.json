@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    money_cols = [\"Each\", \"Disc\", \"Line Amount\"]\n    cleaned = raw.with_columns(\n        [\n            pl.col(c).str.replace_all(r\"[\\$,]\", \"\").cast(pl.Float64, strict=False)\n            for c in money_cols\n        ]\n    )\n\n    return cleaned.select(\n        [\n            pl.col(\"Receipt No\").str.to_uppercase().alias(\"order_id\"),\n            pl.col(\"Line\").cast(pl.Int64, strict=False).alias(\"line_no\"),\n            pl.col(\"Sold At\")\n            .str.to_datetime(\"%d/%m/%Y %H:%M:%S\", strict=False)\n            .cast(pl.Datetime(\"us\"), strict=False)\n            .alias(\"sold_at\"),\n            pl.col(\"Store\").str.to_uppercase().alias(\"store\"),\n            pl.col(\"PLU\").str.to_uppercase().alias(\"sku\"),\n            pl.col(\"Quantity\").cast(pl.Int64, strict=False).alias(\"qty\"),\n            pl.col(\"Each\").round(2).alias(\"unit_price\"),\n            pl.col(\"Disc\").round(2).alias(\"discount\"),\n            pl.col(\"Line Amount\").round(2).alias(\"line_total\"),\n        ]\n    )\n```",
+ "latency_s": 1.689,
+ "prompt_tokens": 2561,
+ "completion_tokens": 335
+}

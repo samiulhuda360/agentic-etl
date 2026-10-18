@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"timesheets\", \"columns\": [{\"target\": \"employee_id\", \"source\": [\"Emp #\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Employee payroll number\"}, {\"target\": \"employee_name\", \"source\": [\"Staff Name\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Employee name in First Last format\"}, {\"target\": \"work_date\", \"source\": [\"Shift Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Date the hours were worked\"}, {\"target\": \"project_code\", \"source\": [\"Job Code\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Project code mapped to upper case per table definition\"}, {\"target\": \"hours_normal\", \"source\": [\"Ordinary\"], \"transform\": \"hours_minutes\", \"confidence\": 1.0, \"note\": \"Convert hours and minutes to decimal hours\"}, {\"target\": \"hours_overtime\", \"source\": [\"OT\"], \"transform\": \"hours_minutes\", \"confidence\": 1.0, \"note\": \"Convert overtime hours and minutes to decimal hours\"}], \"ignore\": {}, \"review\": [\"Job Code in file contains lower-case values (e.g. 'admin', 'p-3100'), but table definition requires upper-case project codes. Transform will normalise to upper-case.\"]}",
+ "latency_s": 1.634,
+ "prompt_tokens": 2993,
+ "completion_tokens": 340
+}

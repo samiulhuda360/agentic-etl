@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\"]\n\n    return raw.select(\n        contact_id=pl.col(\"Contact ID\").str.strip_chars().fill_null(None).replace(null_values, None).str.to_uppercase(),\n        full_name=pl.col(\"Full Name\").str.strip_chars().fill_null(None).replace(null_values, None),\n        email=pl.col(\"Email\").str.strip_chars().fill_null(None).replace(null_values, None).str.to_lowercase(),\n        phone=pl.col(\"Phone\").str.strip_chars().fill_null(None).replace(null_values, None),\n        company=pl.col(\"Company\").str.strip_chars().fill_null(None).replace(null_values, None),\n        created_on=pl.col(\"Created On\")\n            .str.strip_chars()\n            .fill_null(None)\n            .replace(null_values, None)\n            .str.to_date(format=\"%Y-%m-%d\", strict=False),\n        lifetime_value=pl.col(\"Lifetime Value\")\n            .str.strip_chars()\n            .fill_null(None)\n            .replace(null_values, None)\n            .cast(pl.Float64, strict=False)\n            .round(2)\n    )\n```",
+ "latency_s": 1.634,
+ "prompt_tokens": 2068,
+ "completion_tokens": 352
+}

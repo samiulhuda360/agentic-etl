@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\nNULL_VALUES = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\ndef _to_null(col: pl.Expr) -> pl.Expr:\n    return pl.when(col.is_in(NULL_VALUES) | col.is_null()).then(None).otherwise(col)\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    phone_clean = (\n        _to_null(pl.col(\"Phone\"))\n        .str.replace_all(r\"[\\s\\-\\(\\)]\", \"\")\n        .str.replace(r\"^0\", \"+64\")\n    )\n    phone_formatted = (\n        pl.when(phone_clean.str.starts_with(\"+\"))\n        .then(phone_clean)\n        .otherwise(\"+\" + phone_clean)\n    )\n\n    return raw.select(\n        contact_id=pl.col(\"Contact ID\").str.to_uppercase(),\n        full_name=pl.concat_str([pl.col(\"First Name\"), pl.col(\"Last Name\")], separator=\" \"),\n        email=_to_null(pl.col(\"Email\")).str.to_lowercase(),\n        phone=phone_formatted,\n        company=pl.col(\"Company\"),\n        created_on=pl.col(\"Created\").str.to_date(format=\"%Y-%m-%d\", strict=False),\n        lifetime_value=pl.col(\"Lifetime Value\").cast(pl.Float64, strict=False).round(2),\n    )\n```",
+ "latency_s": 1.699,
+ "prompt_tokens": 1750,
+ "completion_tokens": 372
+}

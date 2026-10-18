@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    # Define placeholder values to treat as null\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\n    def clean_str(col_name: str) -> pl.Expr:\n        s = pl.col(col_name).str.strip_chars()\n        return pl.when(s.is_in(null_values)).then(None).otherwise(s)\n\n    return raw.select(\n        supplier=clean_str(\"@Lieferant\"),\n        sku=clean_str(\"Artikel\").str.to_uppercase(),\n        description=clean_str(\"Bezeichnung\"),\n        unit=clean_str(\"Einheit\").str.to_uppercase(),\n        pack_size=clean_str(\"VPE\")\n        .str.replace_all(r\"\\s+\", \"\")\n        .cast(pl.Int64, strict=False),\n        price=clean_str(\"Preis\")\n        .str.replace_all(r\"^(EUR|USD|GBP)\\s*\", \"\", literal=False)\n        .str.strip_chars()\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        currency=pl.lit(\"EUR\"),\n        valid_from=clean_str(\"Gueltig ab\").str.to_date(\n            format=\"%d.%m.%Y\", strict=False\n        ),\n    )\n```",
+ "latency_s": 1.825,
+ "prompt_tokens": 1979,
+ "completion_tokens": 354
+}

@@ -1,0 +1,297 @@
+{
+  "supplier": {
+    "name": "Ironleaf Tools Pty",
+    "country": "AU"
+  },
+  "valid_from": "2026-04-01",
+  "products": [
+    {
+      "code": "IL-5514",
+      "title": "Stainless sealant 300ml",
+      "pack": {
+        "unit": "PK",
+        "size": 50
+      },
+      "price": {
+        "amount": 257.0,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-4658",
+      "title": "Heavy duty wall anchor",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 59.61,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-5148",
+      "title": "Stainless sealant 300ml",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 86.79,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-1816",
+      "title": "Coated wire rope 4mm",
+      "pack": {
+        "unit": "PK",
+        "size": 50
+      },
+      "price": {
+        "amount": 42.78,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-7850",
+      "title": "Galvanised pine batten",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 273.18,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-8976",
+      "title": "Brass hose clamp",
+      "pack": {
+        "unit": "BOX",
+        "size": 20
+      },
+      "price": {
+        "amount": 287.99,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-4923",
+      "title": "Outdoor bracket",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 17.4,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-3596",
+      "title": "Galvanised hose clamp",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 168.3,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-9290",
+      "title": "Outdoor hinge 75mm",
+      "pack": {
+        "unit": "PK",
+        "size": 20
+      },
+      "price": {
+        "amount": 104.5,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-6264",
+      "title": "Galvanised hose clamp",
+      "pack": {
+        "unit": "PK",
+        "size": 10
+      },
+      "price": {
+        "amount": 220.57,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-1401",
+      "title": "Compact hose clamp",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 143.58,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-2704",
+      "title": "Brass hose clamp",
+      "pack": {
+        "unit": "BOX",
+        "size": 200
+      },
+      "price": {
+        "amount": 37.65,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-2832",
+      "title": "Outdoor cable tie",
+      "pack": {
+        "unit": "BOX",
+        "size": 20
+      },
+      "price": {
+        "amount": 94.55,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-3269",
+      "title": "Compact screw 8g x 30mm",
+      "pack": {
+        "unit": "EA",
+        "size": 1
+      },
+      "price": {
+        "amount": 227.54,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-7293",
+      "title": "Compact tap washer",
+      "pack": {
+        "unit": "BOX",
+        "size": 10
+      },
+      "price": {
+        "amount": 364.8,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-6542",
+      "title": "Compact bolt M10 x 80",
+      "pack": {
+        "unit": "BOX",
+        "size": 50
+      },
+      "price": {
+        "amount": 281.09,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-6133",
+      "title": "Brass hose clamp",
+      "pack": {
+        "unit": "BOX",
+        "size": 20
+      },
+      "price": {
+        "amount": 289.1,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-2603",
+      "title": "Treated hinge 75mm",
+      "pack": {
+        "unit": "BOX",
+        "size": 20
+      },
+      "price": {
+        "amount": 89.63,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-8057",
+      "title": "Stainless tap washer",
+      "pack": {
+        "unit": "PK",
+        "size": 100
+      },
+      "price": {
+        "amount": 310.65,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-8966",
+      "title": "Coated bolt M10 x 80",
+      "pack": {
+        "unit": "BOX",
+        "size": 50
+      },
+      "price": {
+        "amount": 363.09,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-2854",
+      "title": "Compact sealant 300ml",
+      "pack": {
+        "unit": "BOX",
+        "size": 50
+      },
+      "price": {
+        "amount": 356.07,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-9937",
+      "title": "Coated hose clamp",
+      "pack": {
+        "unit": "PK",
+        "size": 50
+      },
+      "price": {
+        "amount": 374.78,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-7486",
+      "title": "Brass hinge 75mm",
+      "pack": {
+        "unit": "BOX",
+        "size": 100
+      },
+      "price": {
+        "amount": 141.95,
+        "currency": "AUD"
+      }
+    },
+    {
+      "code": "IL-3035",
+      "title": "Coated bracket",
+      "pack": {
+        "unit": "PK",
+        "size": 200
+      },
+      "price": {
+        "amount": 41.67,
+        "currency": "AUD"
+      }
+    }
+  ]
+}

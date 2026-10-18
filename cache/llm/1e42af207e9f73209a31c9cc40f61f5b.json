@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\n\ndef parse_phone_e164(s: pl.Expr, default_country: str = \"64\") -> pl.Expr:\n    digits = s.str.replace_all(r\"\\D\", \"\")\n    return pl.when(digits.str.len_chars() > 0).then(\n        pl.when(digits.str.starts_with(\"0\"))\n        .then(pl.lit(\"+\" + default_country) + digits.str.slice(1))\n        .otherwise(pl.lit(\"+\") + digits)\n    ).otherwise(None)\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    missing_vals = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\n    return raw.select(\n        contact_id=pl.col(\"Record ID\").str.to_uppercase(),\n        full_name=pl.concat_str([pl.col(\"First Name\"), pl.col(\"Last Name\")], separator=\" \"),\n        email=pl.when(pl.col(\"E-mail\").is_in(missing_vals))\n        .then(None)\n        .otherwise(pl.col(\"E-mail\").str.to_lowercase()),\n        phone=parse_phone_e164(pl.col(\"Mobile\")),\n        company=pl.col(\"Organisation\"),\n        created_on=pl.col(\"Date Created\").str.to_date(\"%d-%b-%Y\", strict=False),\n        lifetime_value=pl.col(\"Total Spend\")\n        .str.replace_all(r\"[\\$,]\", \"\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n    )\n```",
+ "latency_s": 1.721,
+ "prompt_tokens": 2273,
+ "completion_tokens": 410
+}

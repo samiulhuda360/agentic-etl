@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\nNULL_VALUES = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\ndef _to_null(col: pl.Expr) -> pl.Expr:\n    return pl.when(col.is_in(NULL_VALUES) | col.is_null()).then(None).otherwise(col)\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        contact_id=pl.col(\"Contact ID\").str.to_uppercase(),\n        full_name=pl.concat_str([pl.col(\"First Name\"), pl.col(\"Last Name\")], separator=\" \"),\n        email=_to_null(pl.col(\"Email\")).str.to_lowercase(),\n        phone=_to_null(pl.col(\"Phone\"))\n            .str.replace_all(r\"[\\s\\-\\(\\)]\", \"\")\n            .str.replace(r\"^0\", \"+64\")\n            .str.replace(r\"^(?!\\+)\", \"+\"),\n        company=pl.col(\"Company\"),\n        created_on=pl.col(\"Created\").str.to_date(format=\"%Y-%m-%d\", strict=False),\n        lifetime_value=pl.col(\"Lifetime Value\").str.to_decimal(strict=False).cast(pl.Float64).round(2),\n    )\n```",
+ "latency_s": 1.884,
+ "prompt_tokens": 2199,
+ "completion_tokens": 330
+}

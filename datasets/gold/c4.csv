@@ -1,0 +1,27 @@
+contact_id,full_name,email,phone,company,created_on,lifetime_value
+C-04800,Nathan Bailey,nathan.bailey@example.com,+64214266564,Bayline Cafe Group,2025-03-03,2898.77
+C-04803,Daniel Reid,daniel.reid@example.com,+6493661132,Tidewater Landscapes,2026-02-08,8142.75
+C-04806,Kate Turner,kate.turner@example.com,+64212542969,Riverbend Motors,2025-04-02,7343.21
+C-04809,Lucy Parker,lucy.parker@example.com,+64216236280,Bayline Cafe Group,2025-03-10,2254.51
+C-04812,Ryan Fletcher,,+64216712755,Tidewater Landscapes,2025-09-09,185.29
+C-04815,Ryan Cooper,,+6497178906,Pukeko Joinery,2025-11-04,5324.58
+C-04818,Amelia Hayes,amelia.hayes@example.com,+64219064668,Seaview Dental,2026-02-02,810.56
+C-04821,Emma Morgan,emma.morgan@example.com,+64218343563,Northgate Property,2025-04-01,4629.22
+C-04824,Sarah Bailey,sarah.bailey@example.com,+64219506917,Kowhai Builders,2025-11-21,889.58
+C-04827,Ben Bailey,ben.bailey@example.com,+64212506325,Ironleaf Studio,2025-01-23,1245.80
+C-04830,Tom Bailey,tom.bailey@example.com,+6499324738,Harbourside Events,2025-05-23,10575.32
+C-04833,Ryan Foster,ryan.foster@example.com,+6495932373,Ironleaf Studio,2025-11-04,3596.03
+C-04836,Amelia Clarke,amelia.clarke@example.com,+64214976718,Ironleaf Studio,2025-03-19,11674.78
+C-04839,Ella Harper,ella.harper@example.com,+64211224797,Northgate Property,2025-10-15,5718.29
+C-04842,Emma Mitchell,emma.mitchell@example.com,+6498985409,Acme Home & Garden,2025-03-24,5787.01
+C-04845,Ben Foster,ben.foster@example.com,+64211497930,Ironleaf Studio,2025-04-26,4607.58
+C-04848,Megan Parker,,+6499375827,Tidewater Landscapes,2025-11-16,7023.44
+C-04851,Liam Brooks,liam.brooks@example.com,+64219441013,Northgate Property,2025-11-13,1713.89
+C-04854,Tom Wallace,tom.wallace@example.com,+6494434220,Pukeko Joinery,2025-02-11,1424.32
+C-04857,Ryan Morgan,,+64214728818,Northgate Property,2025-04-15,10173.12
+C-04860,Chloe Wallace,chloe.wallace@example.com,+6493534359,Ironleaf Studio,2026-02-25,118.91
+C-04863,Ben Hughes,ben.hughes@example.com,+6492573332,Harbourside Events,2025-05-25,2177.33
+C-04866,Daniel Graham,daniel.graham@example.com,+64219095074,Tidewater Landscapes,2025-11-11,7487.94
+C-04869,Chloe Harper,chloe.harper@example.com,,Pukeko Joinery,2025-11-07,10572.96
+C-04872,Tom Spencer,tom.spencer@example.com,+64214441902,Acme Home & Garden,2025-01-21,10081.06
+C-04875,Lucy Morgan,lucy.morgan@example.com,+64217752215,Seaview Dental,2025-10-10,2280.06

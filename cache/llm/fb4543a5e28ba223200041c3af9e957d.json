@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"crm_contacts\", \"columns\": [{\"target\": \"contact_id\", \"source\": [\"ID\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Maps to CRM contact ID\"}, {\"target\": \"full_name\", \"source\": [\"Contact Name\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Contact full name\"}, {\"target\": \"email\", \"source\": [\"Mail\"], \"transform\": \"text\", \"params\": {\"case\": \"lower\"}, \"confidence\": 1.0, \"note\": \"Email normalized to lowercase\"}, {\"target\": \"phone\", \"source\": [\"Phone Number\"], \"transform\": \"phone_e164\", \"params\": {\"country\": \"64\"}, \"confidence\": 0.95, \"note\": \"Phone number converted to E.164\"}, {\"target\": \"company\", \"source\": [\"Employer\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Employer mapped to company\"}, {\"target\": \"created_on\", \"source\": [\"Created Date\"], \"transform\": \"date_from_datetime\", \"params\": {\"format\": \"%Y-%m-%dT%H:%M:%S\"}, \"confidence\": 1.0, \"note\": \"Extract date part from datetime\"}, {\"target\": \"lifetime_value\", \"source\": [\"Revenue\"], \"transform\": \"number\", \"params\": {\"decimal\": \",\", \"thousands\": \".\"}, \"confidence\": 1.0, \"note\": \"Revenue mapped to lifetime value with European number formatting\"}], \"ignore\": {}, \"review\": [\"Revenue uses comma as decimal separator and dot as thousands separator.\"]}",
+ "latency_s": 1.749,
+ "prompt_tokens": 3216,
+ "completion_tokens": 369
+}

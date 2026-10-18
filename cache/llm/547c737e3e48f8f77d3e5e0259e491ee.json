@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    missing = [\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\", \"None\"]\n\n    def clean_str(col: str) -> pl.Expr:\n        s = pl.col(col).str.strip_chars()\n        return pl.when(s.is_in(missing)).then(None).otherwise(s)\n\n    def parse_number(col: str) -> pl.Expr:\n        cleaned = clean_str(col).str.replace_all(\",\", \".\")\n        return cleaned.cast(pl.Float64, strict=False).round(2)\n\n    return raw.select(\n        employee_id=clean_str(\"Employee ID\").str.to_uppercase(),\n        employee_name=clean_str(\"Employee\"),\n        work_date=clean_str(\"Date\").str.to_date(\"%d/%m/%Y\", strict=False),\n        project_code=clean_str(\"Project\").str.to_uppercase(),\n        hours_normal=parse_number(\"Hours\"),\n        hours_overtime=parse_number(\"Overtime Hours\"),\n    )\n```",
+ "latency_s": 1.47,
+ "prompt_tokens": 1462,
+ "completion_tokens": 283
+}

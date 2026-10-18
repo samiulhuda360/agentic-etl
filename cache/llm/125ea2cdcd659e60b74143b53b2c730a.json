@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"bank_transactions\", \"columns\": [{\"target\": \"account\", \"source\": [\"@Account\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Account number from metadata block\"}, {\"target\": \"txn_date\", \"source\": [\"Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%d/%m/%Y\"}, \"confidence\": 1.0, \"note\": \"Transaction date in DD/MM/YYYY format\"}, {\"target\": \"description\", \"source\": [\"Details\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Transaction narrative\"}, {\"target\": \"amount\", \"source\": [\"Amount\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Signed amount in decimal format\"}, {\"target\": \"balance\", \"source\": [\"Balance\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Running balance in decimal format\"}, {\"target\": \"reference\", \"source\": [\"Reference\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Bank unique reference for transaction\"}], \"ignore\": {\"@Period\": \"Metadata period string not required as dates are parsed from row-level Date column.\"}, \"review\": [\"Check date values around max range as profile indicates some dates up to 2031-04-18 which is beyond typical expected range.\"]}",
+ "latency_s": 1.878,
+ "prompt_tokens": 3253,
+ "completion_tokens": 333
+}

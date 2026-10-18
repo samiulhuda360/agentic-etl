@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"crm_contacts\", \"columns\": [{\"target\": \"contact_id\", \"source\": [\"Contact ID\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Map Contact ID to contact_id\"}, {\"target\": \"full_name\", \"source\": [\"First Name\", \"Last Name\"], \"transform\": \"concat\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Combine First Name and Last Name into First Last format\"}, {\"target\": \"email\", \"source\": [\"Email\"], \"transform\": \"text\", \"params\": {\"case\": \"lower\"}, \"confidence\": 1.0, \"note\": \"Map Email and convert to lower case\"}, {\"target\": \"phone\", \"source\": [\"Phone\"], \"transform\": \"phone_e164\", \"params\": {\"country\": \"64\"}, \"confidence\": 0.95, \"note\": \"Format phone number to E.164 with NZ default country code\"}, {\"target\": \"company\", \"source\": [\"Company\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Map Company name\"}, {\"target\": \"created_on\", \"source\": [\"Created\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Map creation date\"}, {\"target\": \"lifetime_value\", \"source\": [\"Lifetime Value\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Map lifetime value as decimal\"}], \"ignore\": {}, \"review\": [\"Verify if phone numbers already contain country codes so phone_e164 transformation parses correctly.\"]}",
+ "latency_s": 1.953,
+ "prompt_tokens": 3204,
+ "completion_tokens": 384
+}

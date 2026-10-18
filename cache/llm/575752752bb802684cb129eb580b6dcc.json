@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\"]\n\n    return raw.select(\n        account=pl.col(\"@Account\").str.strip_chars(),\n        txn_date=pl.col(\"Date\")\n        .str.to_date(format=\"%d/%m/%Y\", strict=False)\n        .cast(pl.Date),\n        description=pl.col(\"Details\"),\n        amount=pl.col(\"Amount\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        balance=pl.col(\"Balance\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        reference=pl.col(\"Reference\"),\n    ).with_columns(\n        [\n            pl.col(col).fill_null(None)\n            for col in raw.columns\n            if col in [\n                \"@Account\",\n                \"Date\",\n                \"Details\",\n                \"Amount\",\n                \"Balance\",\n                \"Reference\",\n            ]\n        ]\n    ).select(\n        \"account\",\n        \"txn_date\",\n        \"description\",\n        \"amount\",\n        \"balance\",\n        \"reference\",\n    )\n```",
+ "latency_s": 1.647,
+ "prompt_tokens": 1857,
+ "completion_tokens": 310
+}

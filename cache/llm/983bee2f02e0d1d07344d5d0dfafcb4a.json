@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"timesheets\", \"columns\": [{\"target\": \"employee_id\", \"source\": [\"EMPNO\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Employee payroll number\"}, {\"target\": \"employee_name\", \"source\": [\"NAME\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Employee full name\"}, {\"target\": \"work_date\", \"source\": [\"WORKDATE\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y%m%d\"}, \"confidence\": 1.0, \"note\": \"Date hours were worked\"}, {\"target\": \"project_code\", \"source\": [\"PROJ\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Project code\"}, {\"target\": \"hours_normal\", \"source\": [\"NRM\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Ordinary hours worked\"}, {\"target\": \"hours_overtime\", \"source\": [\"OVT\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Overtime hours worked\"}], \"ignore\": {\"@Exported\": \"Metadata field indicating export date, not needed for timesheet line details.\"}, \"review\": []}",
+ "latency_s": 1.613,
+ "prompt_tokens": 3187,
+ "completion_tokens": 309
+}

@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        employee_id=pl.col(\"EMPNO\").str.to_uppercase(),\n        employee_name=pl.col(\"NAME\"),\n        work_date=pl.col(\"WORKDATE\").str.to_date(format=\"%Y%m%d\", strict=False),\n        project_code=pl.col(\"PROJ\").str.to_uppercase(),\n        hours_normal=pl.col(\"NRM\").cast(pl.Float64, strict=False).round(2),\n        hours_overtime=pl.col(\"OVT\").cast(pl.Float64, strict=False).round(2),\n    )\n```",
+ "latency_s": 1.284,
+ "prompt_tokens": 1757,
+ "completion_tokens": 175
+}

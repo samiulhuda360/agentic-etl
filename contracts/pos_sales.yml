@@ -1,0 +1,47 @@
+table: pos_sales
+description: One row per line item sold at a point-of-sale terminal.
+key: [order_id, line_no]
+columns:
+  - name: order_id
+    type: string
+    description: Receipt or order number.
+    aliases: [order, receipt, receipt no, order number]
+  - name: line_no
+    type: int
+    description: Line number of the item within the order, starting at 1.
+    aliases: [line, line number, item no, seq]
+    range: [1, 1000]
+  - name: sold_at
+    type: datetime
+    description: Local date and time of the sale.
+    aliases: [timestamp, sale time, date time, created at, sold]
+    range: ["2000-01-01", "2030-12-31"]
+  - name: store
+    case: upper
+    type: string
+    description: Store code, upper case.
+    aliases: [store code, location, branch, outlet]
+  - name: sku
+    type: string
+    description: Product code of the item sold.
+    aliases: [product code, item code, barcode, plu]
+  - name: qty
+    type: int
+    description: Quantity sold (negative for a refund).
+    aliases: [quantity, units, count]
+    range: [-100, 100]
+  - name: unit_price
+    type: decimal
+    description: Price of one unit, including tax.
+    aliases: [price, each, unit cost]
+    range: [0, 10000]
+  - name: discount
+    type: decimal
+    description: Discount applied to the line, as a positive amount (0 when none).
+    aliases: [disc, markdown, promo]
+    range: [0, 10000]
+  - name: line_total
+    type: decimal
+    description: Amount charged for the line (qty times unit_price, minus discount).
+    aliases: [total, amount, net, line amount]
+    reconcile: true

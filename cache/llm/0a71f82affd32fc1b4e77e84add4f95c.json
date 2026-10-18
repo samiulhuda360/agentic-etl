@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\"]\n\n    def clean_str(col: str) -> pl.Expr:\n        return (\n            pl.col(col)\n            .str.strip_chars()\n            .replace(null_values, None)\n        )\n\n    return raw.select(\n        employee_id=clean_str(\"Employee ID\").str.to_uppercase(),\n        employee_name=clean_str(\"Employee Name\"),\n        work_date=clean_str(\"Work Date\").str.to_date(format=\"%Y-%m-%d\", strict=False),\n        project_code=clean_str(\"Project Code\").str.to_uppercase(),\n        hours_normal=clean_str(\"Normal Hours\").cast(pl.Float64, strict=False).round(2),\n        hours_overtime=clean_str(\"Overtime Hours\").cast(pl.Float64, strict=False).round(2),\n    )\n```",
+ "latency_s": 1.434,
+ "prompt_tokens": 1727,
+ "completion_tokens": 250
+}

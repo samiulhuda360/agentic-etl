@@ -1,0 +1,35 @@
+table: timesheets
+description: Hours worked by one employee on one project on one day.
+key: [employee_id, work_date, project_code]
+columns:
+  - name: employee_id
+    type: string
+    description: Payroll employee number, for example E1042.
+    aliases: [emp id, employee number, staff id, emp no, payroll id]
+  - name: employee_name
+    type: string
+    description: Employee name written as "First Last".
+    aliases: [name, employee, staff name, worker]
+  - name: work_date
+    type: date
+    description: Day the hours were worked.
+    aliases: [date, day, shift date]
+    range: ["2000-01-01", "2030-12-31"]
+  - name: project_code
+    case: upper
+    type: string
+    description: Project or job code the hours are charged to, upper case.
+    aliases: [project, job, job code, cost code]
+  - name: hours_normal
+    type: float
+    description: Ordinary hours, as a decimal number of hours.
+    aliases: [normal hours, ordinary, regular hours, hours]
+    range: [0, 24]
+    tolerance: 0.01
+    reconcile: true
+  - name: hours_overtime
+    type: float
+    description: Overtime hours, as a decimal number of hours (0 when none).
+    aliases: [overtime, ot, ot hours]
+    range: [0, 24]
+    tolerance: 0.01

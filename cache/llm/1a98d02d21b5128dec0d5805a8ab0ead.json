@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\nNULL_VALUES = {\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\"}\n\n\ndef _clean_str(col: pl.Expr) -> pl.Expr:\n    return pl.when(col.is_in(list(NULL_VALUES))).then(None).otherwise(col)\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        device_id=_clean_str(pl.col(\"dev\")).str.to_uppercase(),\n        read_at=_clean_str(pl.col(\"ts\")).str.to_datetime(\n            format=\"%Y-%m-%dT%H:%M:%SZ\", strict=False, time_unit=\"us\"\n        ),\n        temperature_c=_clean_str(pl.col(\"payload.t\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        humidity_pct=_clean_str(pl.col(\"payload.h\"))\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        battery_v=(\n            _clean_str(pl.col(\"payload.bat_mv\")).cast(pl.Float64, strict=False)\n            * 0.001\n        ).round(2),\n    )\n```",
+ "latency_s": 1.71,
+ "prompt_tokens": 1710,
+ "completion_tokens": 317
+}

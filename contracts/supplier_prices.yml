@@ -1,0 +1,44 @@
+table: supplier_prices
+description: One row per product on a supplier price list.
+key: [supplier, sku]
+columns:
+  - name: supplier
+    type: string
+    description: Supplier trading name.
+    aliases: [vendor, supplier name]
+  - name: sku
+    type: string
+    description: Supplier product code.
+    aliases: [product code, item code, code, part number, article]
+  - name: description
+    type: string
+    description: Product name or description.
+    aliases: [product, item, name, product name]
+  - name: unit
+    case: upper
+    type: string
+    description: Unit of sale, upper case (EA, BOX, KG, M, L, PK).
+    aliases: [uom, unit of measure, sell unit]
+    accepted: [EA, BOX, KG, M, L, PK]
+  - name: pack_size
+    type: int
+    description: Number of units in one pack.
+    aliases: [pack, qty per pack, pack qty, size]
+    range: [1, 10000]
+  - name: price
+    type: decimal
+    description: Price for one unit, excluding tax, in the stated currency.
+    aliases: [unit price, price ex gst, cost, list price]
+    range: [0, 100000]
+    reconcile: true
+  - name: currency
+    case: upper
+    type: string
+    description: ISO 4217 currency code of the price.
+    aliases: [ccy, curr]
+    accepted: [NZD, AUD, USD, EUR]
+  - name: valid_from
+    type: date
+    description: Date from which the price applies.
+    aliases: [effective date, effective from, start date, from]
+    range: ["2000-01-01", "2030-12-31"]

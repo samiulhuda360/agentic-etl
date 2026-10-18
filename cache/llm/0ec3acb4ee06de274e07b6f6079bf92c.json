@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\ndef _parse_hm(col: pl.Expr) -> pl.Expr:\n    parts = col.str.split_exact(\":\", 1)\n    hours = parts.struct.field(\"field_0\").cast(pl.Float64, strict=False)\n    minutes = parts.struct.field(\"field_1\").cast(pl.Float64, strict=False)\n    return (hours + minutes / 60.0).round(2)\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        employee_id=pl.col(\"Emp #\").str.to_uppercase(),\n        employee_name=pl.col(\"Staff Name\"),\n        work_date=pl.col(\"Shift Date\").str.to_date(format=\"%Y-%m-%d\", strict=False),\n        project_code=pl.col(\"Job Code\").str.to_uppercase(),\n        hours_normal=_parse_hm(pl.col(\"Ordinary\")),\n        hours_overtime=_parse_hm(pl.col(\"OT\")),\n    )\n```",
+ "latency_s": 1.482,
+ "prompt_tokens": 1758,
+ "completion_tokens": 265
+}

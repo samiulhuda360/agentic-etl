@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\n\ndef _parse_money(col: pl.Expr) -> pl.Expr:\n    return (\n        col.str.replace_all(r\"[\\$,]\", \"\")\n        .cast(pl.Float64, strict=False)\n        .round(2)\n    )\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    debit_clean = _parse_money(raw[\"Debit\"])\n    credit_clean = _parse_money(raw[\"Credit\"])\n\n    amount_expr = pl.when(credit_clean.is_not_null()) \\\n        .then(credit_clean) \\\n        .otherwise(-debit_clean)\n\n    return raw.select(\n        account=pl.col(\"Account Number\"),\n        txn_date=pl.col(\"Transaction Date\").str.to_date(format=\"%d %b %Y\", strict=False),\n        description=pl.col(\"Description\"),\n        amount=amount_expr,\n        balance=_parse_money(pl.col(\"Balance\")),\n        reference=pl.col(\"Ref No\"),\n    )\n```",
+ "latency_s": 1.515,
+ "prompt_tokens": 2001,
+ "completion_tokens": 266
+}

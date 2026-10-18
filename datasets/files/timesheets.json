@@ -1,0 +1,239 @@
+{
+ "period": "2026-W09",
+ "employees": [
+  {
+   "id": "E1001",
+   "name": {
+    "first": "Sarah",
+    "last": "Clarke"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "P-1001",
+     "normal": 7.25,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-24",
+     "project": "P-1001",
+     "normal": 7.5,
+     "overtime": 1.5
+    },
+    {
+     "date": "2026-02-25",
+     "project": "P-1001",
+     "normal": 8.0,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-26",
+     "project": "P-1002",
+     "normal": 7.5,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-27",
+     "project": "ADMIN",
+     "normal": 8.0,
+     "overtime": 2.0
+    }
+   ]
+  },
+  {
+   "id": "E1002",
+   "name": {
+    "first": "James",
+    "last": "Walker"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "ADMIN",
+     "normal": 4.5,
+     "overtime": 1.5
+    },
+    {
+     "date": "2026-02-24",
+     "project": "P-3100",
+     "normal": 8.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-25",
+     "project": "ADMIN",
+     "normal": 7.25,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-26",
+     "project": "P-1001",
+     "normal": 8.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-27",
+     "project": "P-1001",
+     "normal": 4.5,
+     "overtime": 1.5
+    }
+   ]
+  },
+  {
+   "id": "E1003",
+   "name": {
+    "first": "Emma",
+    "last": "Bennett"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "P-1002",
+     "normal": 8.0,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-24",
+     "project": "P-2040",
+     "normal": 8.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-25",
+     "project": "P-1002",
+     "normal": 6.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-26",
+     "project": "P-1001",
+     "normal": 4.5,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-27",
+     "project": "P-3100",
+     "normal": 4.5,
+     "overtime": 2.0
+    }
+   ]
+  },
+  {
+   "id": "E1004",
+   "name": {
+    "first": "Tom",
+    "last": "Hughes"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "P-1001",
+     "normal": 8.0,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-24",
+     "project": "P-3100",
+     "normal": 6.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-25",
+     "project": "P-3100",
+     "normal": 7.5,
+     "overtime": 0.75
+    },
+    {
+     "date": "2026-02-26",
+     "project": "P-1001",
+     "normal": 7.25,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-27",
+     "project": "P-1002",
+     "normal": 7.25,
+     "overtime": 0.0
+    }
+   ]
+  },
+  {
+   "id": "E1005",
+   "name": {
+    "first": "Claire",
+    "last": "Turner"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "P-2040",
+     "normal": 8.0,
+     "overtime": 2.0
+    },
+    {
+     "date": "2026-02-24",
+     "project": "P-3100",
+     "normal": 7.25,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-25",
+     "project": "P-3100",
+     "normal": 6.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-26",
+     "project": "ADMIN",
+     "normal": 6.0,
+     "overtime": 1.5
+    },
+    {
+     "date": "2026-02-27",
+     "project": "ADMIN",
+     "normal": 4.5,
+     "overtime": 0.0
+    }
+   ]
+  },
+  {
+   "id": "E1006",
+   "name": {
+    "first": "Oliver",
+    "last": "Parker"
+   },
+   "entries": [
+    {
+     "date": "2026-02-23",
+     "project": "P-1001",
+     "normal": 6.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-24",
+     "project": "ADMIN",
+     "normal": 7.25,
+     "overtime": 1.5
+    },
+    {
+     "date": "2026-02-25",
+     "project": "P-2040",
+     "normal": 8.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-26",
+     "project": "P-2040",
+     "normal": 6.0,
+     "overtime": 0.0
+    },
+    {
+     "date": "2026-02-27",
+     "project": "ADMIN",
+     "normal": 4.5,
+     "overtime": 2.0
+    }
+   ]
+  }
+ ]
+}

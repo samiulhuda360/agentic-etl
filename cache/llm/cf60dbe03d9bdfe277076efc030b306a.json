@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"timesheets\", \"columns\": [{\"target\": \"employee_id\", \"source\": [\"Employee ID\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Employee payroll number\"}, {\"target\": \"employee_name\", \"source\": [\"Employee Name\"], \"transform\": \"text\", \"confidence\": 1.0, \"note\": \"Employee full name\"}, {\"target\": \"work_date\", \"source\": [\"Work Date\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Date hours were worked\"}, {\"target\": \"project_code\", \"source\": [\"Project Code\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Project or job code\"}, {\"target\": \"hours_normal\", \"source\": [\"Normal Hours\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Ordinary hours worked\"}, {\"target\": \"hours_overtime\", \"source\": [\"Overtime Hours\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Overtime hours worked\"}], \"ignore\": {}, \"review\": []}",
+ "latency_s": 1.544,
+ "prompt_tokens": 2999,
+ "completion_tokens": 294
+}

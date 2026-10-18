@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    # Replace common placeholder strings with nulls across all columns\n    placeholders = r\"^(?:N/A|n/a|-|null|)$\"\n    cleaned = raw.with_columns(\n        pl.all().str.replace(placeholders, None)\n    )\n\n    return cleaned.select(\n        account=pl.col(\"@Account\").str.strip_chars(),\n        txn_date=pl.col(\"Date\").str.to_date(format=\"%d/%m/%Y\", strict=False),\n        description=pl.col(\"Details\").str.strip_chars(),\n        amount=pl.col(\"Amount\").cast(pl.Float64, strict=False).round(2),\n        balance=pl.col(\"Balance\").cast(pl.Float64, strict=False).round(2),\n        reference=pl.col(\"Reference\").str.strip_chars(),\n    )\n```",
+ "latency_s": 1.59,
+ "prompt_tokens": 1905,
+ "completion_tokens": 239
+}

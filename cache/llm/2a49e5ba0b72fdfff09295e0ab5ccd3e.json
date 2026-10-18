@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        supplier=pl.col(\"Vendor\"),\n        sku=pl.col(\"Item Code\").str.to_uppercase(),\n        description=pl.col(\"Item Name\"),\n        unit=pl.col(\"UOM\").str.to_uppercase(),\n        pack_size=pl.col(\"Pack\").cast(pl.Int64, strict=False),\n        price=pl.col(\"Unit Price\")\n        .str.replace_all(r\"[^\\d.]\", \"\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        currency=pl.lit(\"NZD\"),\n        valid_from=pl.col(\"Effective\").str.to_date(\"%Y-%m-%d\", strict=False),\n    )\n```",
+ "latency_s": 1.406,
+ "prompt_tokens": 1991,
+ "completion_tokens": 211
+}

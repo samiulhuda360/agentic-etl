@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n \"table\": \"sensor_readings\",\n \"columns\": [\n  {\n   \"target\": \"device_id\",\n   \"source\": [\n    \"device\"\n   ],\n   \"transform\": \"text\",\n   \"params\": {\n    \"case\": \"upper\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Map device code to upper case device_id\"\n  },\n  {\n   \"target\": \"read_at\",\n   \"source\": [\n    \"ts\"\n   ],\n   \"transform\": \"datetime\",\n   \"params\": {\n    \"format\": \"epoch_s\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Unix timestamp in seconds\"\n  },\n  {\n   \"target\": \"temperature_c\",\n   \"source\": [\n    \"temp\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 0.9,\n   \"note\": \"Air temperature in Celsius\"\n  },\n  {\n   \"target\": \"humidity_pct\",\n   \"source\": [\n    \"rh\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 0.9,\n   \"note\": \"Relative humidity percentage\"\n  },\n  {\n   \"target\": \"battery_v\",\n   \"source\": [\n    \"bat\"\n   ],\n   \"transform\": \"number\",\n   \"params\": {\n    \"decimal\": \".\"\n   },\n   \"confidence\": 1.0,\n   \"note\": \"Battery voltage in volts\"\n  }\n ],\n \"ignore\": {},\n \"review\": [\n  \"Minimum temperature of -999 in profile looks like an error code or placeholder that should be checked.\"\n ]\n}",
+ "latency_s": 1.832,
+ "prompt_tokens": 2924,
+ "completion_tokens": 436
+}

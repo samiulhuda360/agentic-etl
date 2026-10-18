@@ -1,0 +1,4 @@
+datasets/** -text
+cache/** -text
+*.png binary
+*.gif binary

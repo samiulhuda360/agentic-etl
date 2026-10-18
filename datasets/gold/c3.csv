@@ -1,0 +1,27 @@
+contact_id,full_name,email,phone,company,created_on,lifetime_value
+C-03600,Nathan Harper,nathan.harper@example.com,+64215886679,Kowhai Builders,2025-05-23,6354.31
+C-03603,Luke Fletcher,,+6496618148,Acme Home & Garden,2025-03-27,11854.47
+C-03606,Chloe Hughes,chloe.hughes@example.com,+6497683084,Pukeko Joinery,2025-06-12,4546.80
+C-03609,Oliver Hayes,oliver.hayes@example.com,+64212533986,Kowhai Builders,2025-07-01,9606.85
+C-03612,Sophie Spencer,sophie.spencer@example.com,+64215003350,Northgate Property,2025-06-30,6906.93
+C-03615,Sam Brooks,sam.brooks@example.com,+6497662978,Tidewater Landscapes,2025-05-10,6208.45
+C-03618,Ryan Bennett,ryan.bennett@example.com,+64218899355,Pukeko Joinery,2025-08-28,8328.05
+C-03621,Ben Foster,ben.foster@example.com,+64218068342,Riverbend Motors,2025-01-27,8835.80
+C-03624,Liam Reid,,+6492752322,Bayline Cafe Group,2025-10-29,6201.10
+C-03627,Daniel Reid,daniel.reid@example.com,+6494129070,Northgate Property,2025-02-22,3313.35
+C-03630,Daniel Walker,daniel.walker@example.com,,Bayline Cafe Group,2025-04-26,6511.64
+C-03633,Josh Graham,josh.graham@example.com,+64213088514,Tidewater Landscapes,2026-01-05,6858.64
+C-03636,Lucy Foster,lucy.foster@example.com,+6495371098,Kowhai Builders,2025-09-13,9811.87
+C-03639,Tom Bennett,tom.bennett@example.com,,Ironleaf Studio,2025-07-07,1526.06
+C-03642,Josh Cooper,josh.cooper@example.com,+6497589108,Riverbend Motors,2025-02-15,464.22
+C-03645,Ella Hayes,ella.hayes@example.com,+64215817723,Seaview Dental,2025-12-02,4941.28
+C-03648,Megan Bailey,megan.bailey@example.com,+64212403756,Ironleaf Studio,2025-05-05,9936.42
+C-03651,Ryan Mitchell,ryan.mitchell@example.com,+6498391088,Seaview Dental,2026-02-08,6630.88
+C-03654,Sophie Bennett,sophie.bennett@example.com,+64218015700,Northgate Property,2026-01-24,5005.68
+C-03657,Liam Graham,liam.graham@example.com,+6499784323,Bayline Cafe Group,2025-11-04,10126.98
+C-03660,Josh Lawson,josh.lawson@example.com,+6497781978,Harbourside Events,2025-12-18,8862.16
+C-03663,Liam Harper,,+64218507516,Northgate Property,2025-12-18,6918.72
+C-03666,Ben Cooper,ben.cooper@example.com,+64211998743,Ironleaf Studio,2025-07-20,3893.22
+C-03669,Tom Walker,tom.walker@example.com,+6493175030,Kowhai Builders,2025-07-16,1744.70
+C-03672,Claire Hayes,claire.hayes@example.com,+64213410427,Seaview Dental,2026-03-01,5998.37
+C-03675,Chloe Foster,chloe.foster@example.com,+64212493647,Riverbend Motors,2025-02-02,10914.05

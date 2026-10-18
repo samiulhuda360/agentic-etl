@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\nimport re\nfrom datetime import datetime\nimport math\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    # Helper to clean placeholder strings into nulls\n    def clean_str(col_name: str) -> pl.Expr:\n        s = pl.col(col_name).str.strip_chars()\n        return pl.when(s.is_in([\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\"])) \\\n            .then(None) \\\n            .otherwise(s)\n\n    # Convert columns according to target specification\n    return raw.select(\n        order_id=clean_str(\"Order\").str.to_uppercase(),\n        line_no=clean_str(\"Line #\").cast(pl.Int64, strict=False),\n        sold_at=(\n            clean_str(\"Date\") + \" \" + clean_str(\"Time\")\n        ).str.to_datetime(\n            format=\"%Y-%m-%d %H:%M:%S\",\n            time_unit=\"us\",\n            strict=False\n        ),\n        store=clean_str(\"@sheet\").str.to_uppercase(),\n        sku=clean_str(\"SKU\").str.to_uppercase(),\n        qty=clean_str(\"Qty\").cast(pl.Int64, strict=False),\n        unit_price=clean_str(\"Unit Price\").cast(pl.Float64, strict=False).round(2),\n        discount=clean_str(\"Discount\").cast(pl.Float64, strict=False).round(2),\n        line_total=clean_str(\"Total\").cast(pl.Float64, strict=False).round(2)\n    )\n```",
+ "latency_s": 2.278,
+ "prompt_tokens": 2465,
+ "completion_tokens": 395
+}

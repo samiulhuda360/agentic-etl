@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    null_values = [\"\", \"N/A\", \"n/a\", \"-\", \"null\"]\n\n    return raw.select(\n        account=pl.col(\"@Account\").str.strip_chars(),\n        txn_date=pl.col(\"Date\")\n        .str.to_date(format=\"%d/%m/%Y\", strict=False)\n        .cast(pl.Date),\n        description=pl.col(\"Details\"),\n        amount=pl.col(\"Amount\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        balance=pl.col(\"Balance\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        reference=pl.col(\"Reference\"),\n    ).select(\n        pl.col(\"account\").replace(null_values, None),\n        pl.col(\"txn_date\"),\n        pl.col(\"description\").replace(null_values, None),\n        pl.col(\"amount\"),\n        pl.col(\"balance\"),\n        pl.col(\"reference\").replace(null_values, None),\n    )\n```",
+ "latency_s": 1.762,
+ "prompt_tokens": 1510,
+ "completion_tokens": 278
+}

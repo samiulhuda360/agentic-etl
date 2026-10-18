@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\n  \"table\": \"sensor_readings\",\n  \"columns\": [\n    {\n      \"target\": \"device_id\",\n      \"source\": [\n        \"Sensor ID\"\n      ],\n      \"transform\": \"text\",\n      \"params\": {\n        \"case\": \"upper\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Maps directly to device_id and is already uppercase\"\n    },\n    {\n      \"target\": \"read_at\",\n      \"source\": [\n        \"Recorded At\"\n      ],\n      \"transform\": \"datetime\",\n      \"params\": {\n        \"format\": \"%Y-%m-%dT%H:%M:%SZ\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Timestamp in UTC matching expected format\"\n    },\n    {\n      \"target\": \"temperature_c\",\n      \"source\": [\n        \"Temp (F)\"\n      ],\n      \"transform\": \"f_to_c\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Converts Fahrenheit temperature to Celsius\"\n    },\n    {\n      \"target\": \"humidity_pct\",\n      \"source\": [\n        \"Humidity (%)\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Relative humidity percentage\"\n    },\n    {\n      \"target\": \"battery_v\",\n      \"source\": [\n        \"Battery (V)\"\n      ],\n      \"transform\": \"number\",\n      \"params\": {\n        \"decimal\": \".\"\n      },\n      \"confidence\": 1.0,\n      \"note\": \"Battery voltage\"\n    }\n  ],\n  \"ignore\": {},\n  \"review\": []\n}",
+ "latency_s": 2.04,
+ "prompt_tokens": 3070,
+ "completion_tokens": 437
+}

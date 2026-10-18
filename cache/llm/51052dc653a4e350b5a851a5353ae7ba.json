@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    def clean_str(col: str) -> pl.Expr:\n        s = pl.col(col).str.strip_chars()\n        return pl.when(s.is_in([\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\"])).then(None).otherwise(s)\n\n    # Phone e164 normalization for New Zealand (country code 64)\n    def clean_phone(col: str) -> pl.Expr:\n        c = clean_str(col)\n        digits = c.str.replace_all(r\"\\D\", \"\")\n        return pl.when(digits.is_not_null()).then(\n            pl.concat_str([pl.lit(\"+\"), digits])\n        ).otherwise(None)\n\n    # European number format: 10.159,77 -> 10159.77\n    def clean_number(col: str) -> pl.Expr:\n        c = clean_str(col)\n        cleaned = c.str.replace_all(r\"\\.\", \"\").str.replace_all(r\",\", \".\")\n        return cleaned.cast(pl.Float64, strict=False).round(2)\n\n    return raw.select(\n        contact_id=clean_str(\"ID\").str.to_uppercase(),\n        full_name=clean_str(\"Contact Name\"),\n        email=clean_str(\"Mail\").str.to_lowercase(),\n        phone=clean_phone(\"Phone Number\"),\n        company=clean_str(\"Employer\"),\n        created_on=clean_str(\"Created Date\").str.to_datetime(\"%Y-%m-%dT%H:%M:%S\", strict=False).dt.date(),\n        lifetime_value=clean_number(\"Revenue\"),\n    )\n```",
+ "latency_s": 2.148,
+ "prompt_tokens": 2227,
+ "completion_tokens": 436
+}

@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    return raw.select(\n        supplier=pl.col(\"@Lieferant\").str.strip_chars(),\n        sku=pl.col(\"Artikel\").str.strip_chars().str.to_uppercase(),\n        description=pl.col(\"Bezeichnung\").str.strip_chars(),\n        unit=pl.col(\"Einheit\").str.strip_chars().str.to_uppercase(),\n        pack_size=pl.col(\"VPE\")\n        .str.replace_all(r\"[^\\d\\-]\", \"\")\n        .cast(pl.Int64, strict=False),\n        price=pl.col(\"Preis\")\n        .str.replace_all(r\"[^\\d,\\.\\-]\", \"\")\n        .str.replace_all(r\"\\.\", \"\")\n        .str.replace_all(r\",\", \".\")\n        .cast(pl.Float64, strict=False)\n        .round(2),\n        currency=pl.lit(\"EUR\"),\n        valid_from=pl.col(\"Gueltig ab\").str.to_date(\"%d.%m.%Y\", strict=False),\n    )\n```",
+ "latency_s": 1.783,
+ "prompt_tokens": 1946,
+ "completion_tokens": 276
+}

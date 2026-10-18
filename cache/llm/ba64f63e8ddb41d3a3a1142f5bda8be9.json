@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "{\"table\": \"supplier_prices\",\n \"columns\": [\n   {\"target\": \"supplier\", \"source\": [\"@supplier.name\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Supplier trading name from metadata\"},\n   {\"target\": \"sku\", \"source\": [\"code\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Product code\"},\n   {\"target\": \"description\", \"source\": [\"title\"], \"transform\": \"text\", \"params\": {}, \"confidence\": 1.0, \"note\": \"Product description\"},\n   {\"target\": \"unit\", \"source\": [\"pack.unit\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Unit of sale\"},\n   {\"target\": \"pack_size\", \"source\": [\"pack.size\"], \"transform\": \"int\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Pack size\"},\n   {\"target\": \"price\", \"source\": [\"price.amount\"], \"transform\": \"number\", \"params\": {\"decimal\": \".\"}, \"confidence\": 1.0, \"note\": \"Price amount\"},\n   {\"target\": \"currency\", \"source\": [\"price.currency\"], \"transform\": \"text\", \"params\": {\"case\": \"upper\"}, \"confidence\": 1.0, \"note\": \"Currency code\"},\n   {\"target\": \"valid_from\", \"source\": [\"@valid_from\"], \"transform\": \"date\", \"params\": {\"format\": \"%Y-%m-%d\"}, \"confidence\": 1.0, \"note\": \"Valid from date from metadata\"}\n ],\n \"ignore\": {\n   \"@supplier.country\": \"Country code is captured by supplier context or not needed for supplier_prices table structure\"\n },\n \"review\": []}",
+ "latency_s": 1.946,
+ "prompt_tokens": 3127,
+ "completion_tokens": 422
+}

@@ -1,0 +1,27 @@
+contact_id,full_name,email,phone,company,created_on,lifetime_value
+C-06000,Liam Harper,liam.harper@example.com,+64215370066,Riverbend Motors,2025-10-22,10159.77
+C-06003,Hannah Bailey,hannah.bailey@example.com,+6498845544,Northgate Property,2025-06-04,10870.55
+C-06006,Liam Turner,,+6498077236,Tidewater Landscapes,2025-06-07,1244.56
+C-06009,Claire Hayes,claire.hayes@example.com,+6496262861,Tidewater Landscapes,2026-02-09,9053.80
+C-06012,Kate Cooper,kate.cooper@example.com,+64213559121,Harbourside Events,2026-01-10,11799.45
+C-06015,Sam Morgan,sam.morgan@example.com,+6494468211,Harbourside Events,2025-01-28,6217.56
+C-06018,Amelia Morgan,,+64215237322,Harbourside Events,2026-01-09,7326.45
+C-06021,Emma Hughes,emma.hughes@example.com,+64219107256,Harbourside Events,2026-02-06,3306.52
+C-06024,Daniel Fletcher,daniel.fletcher@example.com,+6499322953,Riverbend Motors,2025-08-02,4675.36
+C-06027,Kate Hayes,,+6496920060,Riverbend Motors,2025-01-09,2351.14
+C-06030,Daniel Harper,daniel.harper@example.com,+64211645806,Tidewater Landscapes,2025-09-05,6188.43
+C-06033,Nathan Brooks,nathan.brooks@example.com,+64219203634,Harbourside Events,2025-03-27,1885.50
+C-06036,Daniel Bailey,daniel.bailey@example.com,+6495247471,Tidewater Landscapes,2025-12-10,6040.00
+C-06039,Hannah Walker,hannah.walker@example.com,+64219715074,Ironleaf Studio,2025-02-09,634.52
+C-06042,Sam Brooks,sam.brooks@example.com,+64218829084,Northgate Property,2025-11-12,5185.99
+C-06045,Ben Reid,ben.reid@example.com,+6496838418,Acme Home & Garden,2025-06-24,6320.38
+C-06048,Megan Parker,megan.parker@example.com,,Kowhai Builders,2025-04-06,4624.12
+C-06051,Sophie Mitchell,sophie.mitchell@example.com,+64214056301,Kowhai Builders,2025-07-04,5353.56
+C-06054,Ben Mitchell,ben.mitchell@example.com,+6492595590,Tidewater Landscapes,2025-12-08,7436.68
+C-06057,Hannah Bennett,hannah.bennett@example.com,+6499811156,Bayline Cafe Group,2025-07-02,7371.81
+C-06060,Claire Parker,claire.parker@example.com,,Tidewater Landscapes,2025-07-20,11813.86
+C-06063,Jack Reid,jack.reid@example.com,+6498173570,Ironleaf Studio,2025-11-30,7895.27
+C-06066,Sam Wallace,sam.wallace@example.com,,Tidewater Landscapes,2025-09-17,5003.44
+C-06069,Josh Morgan,josh.morgan@example.com,+64216473684,Tidewater Landscapes,2025-03-10,2051.57
+C-06072,Sophie Bailey,sophie.bailey@example.com,+6498245198,Tidewater Landscapes,2025-06-08,10266.24
+C-06075,Lucy Bennett,lucy.bennett@example.com,+6497846088,Kowhai Builders,2025-02-10,2171.33

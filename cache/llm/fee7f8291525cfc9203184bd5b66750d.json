@@ -1,0 +1,8 @@
+{
+ "model": "gemini-flash-lite-latest",
+ "served_by": "gemini-flash-lite-latest",
+ "text": "```python\nimport datetime\nimport math\nimport re\nimport polars as pl\n\n\ndef transform(raw: pl.DataFrame) -> pl.DataFrame:\n    def clean_str(col: str) -> pl.Expr:\n        s = pl.col(col).str.strip_chars()\n        return pl.when(s.is_in([\"\", \"N/A\", \"n/a\", \"-\", \"null\", \"NULL\"])).then(None).otherwise(s)\n\n    return raw.select(\n        supplier=clean_str(\"@Supplier\").str.to_uppercase(),\n        sku=clean_str(\"Product Code\").str.to_uppercase(),\n        description=clean_str(\"Product Description\"),\n        unit=clean_str(\"Pack Unit\").str.to_uppercase(),\n        pack_size=clean_str(\"Pack Qty\").cast(pl.Int64, strict=False),\n        price=clean_str(\"Pricing Price ex GST\").cast(pl.Float64, strict=False).round(2),\n        currency=clean_str(\"Pricing Currency\").str.to_uppercase(),\n        valid_from=clean_str(\"@Effective from\").str.to_date(format=\"%Y-%m-%d\", strict=False),\n    )\n```",
+ "latency_s": 1.825,
+ "prompt_tokens": 2035,
+ "completion_tokens": 280
+}
